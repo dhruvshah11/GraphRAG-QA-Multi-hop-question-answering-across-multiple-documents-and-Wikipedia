@@ -1,0 +1,144 @@
+{
+  "name": "GraphRAG-QA multi-document demo set",
+  "version": "1.0",
+  "description": "Hand-written questions over the five bundled documents in data/samples/documents. Gold evidence strings are exact substrings of the documents; the evaluator maps them to whatever chunks contain them under the current chunk settings. 'bridge' questions need facts from two different documents; 'unanswerable' questions test the insufficient-evidence safeguard.",
+  "license": "Questions and documents written for this project (CC BY 4.0).",
+  "documents": [
+    "nobel_prizes_2024.pdf",
+    "geoffrey_hinton_profile.txt",
+    "deepmind_history.docx",
+    "turing_award_2018.pdf",
+    "openai_and_transformers.txt"
+  ],
+  "questions": [
+    {
+      "id": "demo-01",
+      "type": "bridge",
+      "question": "From which university did the 2024 Nobel Prize in Physics laureate from the University of Toronto receive his PhD?",
+      "answer": "University of Edinburgh",
+      "answer_aliases": ["the University of Edinburgh", "Edinburgh"],
+      "gold_documents": ["nobel_prizes_2024.pdf", "geoffrey_hinton_profile.txt"],
+      "gold_evidence": [
+        "Geoffrey E. Hinton of the University of Toronto",
+        "He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978"
+      ]
+    },
+    {
+      "id": "demo-02",
+      "type": "bridge",
+      "question": "In which city was the AI company co-founded by a 2024 Nobel Prize in Chemistry laureate founded?",
+      "answer": "London",
+      "answer_aliases": ["London, England"],
+      "gold_documents": ["nobel_prizes_2024.pdf", "deepmind_history.docx"],
+      "gold_evidence": [
+        "jointly to Demis Hassabis and John M. Jumper of Google DeepMind",
+        "DeepMind Technologies was founded in London in 2010 by Demis Hassabis, Shane Legg and Mustafa Suleyman"
+      ]
+    },
+    {
+      "id": "demo-03",
+      "type": "bridge",
+      "question": "Which co-founder of DNNresearch later became chief scientist of OpenAI?",
+      "answer": "Ilya Sutskever",
+      "answer_aliases": ["Sutskever"],
+      "gold_documents": ["geoffrey_hinton_profile.txt", "openai_and_transformers.txt"],
+      "gold_evidence": [
+        "Hinton, Krizhevsky and Sutskever then founded the start-up DNNresearch",
+        "Ilya Sutskever became the organisation's chief scientist"
+      ]
+    },
+    {
+      "id": "demo-04",
+      "type": "bridge",
+      "question": "Which award did the scientist who supervised Ilya Sutskever's PhD share with Yann LeCun?",
+      "answer": "2018 ACM A.M. Turing Award",
+      "answer_aliases": ["Turing Award", "the 2018 ACM A.M. Turing Award", "ACM A.M. Turing Award", "the Turing Award"],
+      "gold_documents": ["geoffrey_hinton_profile.txt", "turing_award_2018.pdf"],
+      "gold_evidence": [
+        "Sutskever completed his PhD at the University of Toronto under Hinton's supervision",
+        "Yoshua Bengio, Geoffrey Hinton and Yann LeCun were the recipients of the 2018 ACM A.M. Turing Award"
+      ]
+    },
+    {
+      "id": "demo-05",
+      "type": "bridge",
+      "question": "Which company acquired the London AI lab whose chief executive shared the 2024 Nobel Prize in Chemistry?",
+      "answer": "Google",
+      "answer_aliases": ["Google LLC"],
+      "gold_documents": ["nobel_prizes_2024.pdf", "deepmind_history.docx"],
+      "gold_evidence": [
+        "jointly to Demis Hassabis and John M. Jumper of Google DeepMind",
+        "In January 2014 Google acquired DeepMind"
+      ]
+    },
+    {
+      "id": "demo-06",
+      "type": "single",
+      "question": "In which city was the AlphaGo match against Lee Sedol held?",
+      "answer": "Seoul",
+      "answer_aliases": ["Seoul, South Korea"],
+      "gold_documents": ["deepmind_history.docx"],
+      "gold_evidence": ["in a five-game match held in Seoul, South Korea"]
+    },
+    {
+      "id": "demo-07",
+      "type": "single",
+      "question": "When was the 2024 Nobel Prize in Physics announced?",
+      "answer": "8 October 2024",
+      "answer_aliases": ["October 8, 2024", "on 8 October 2024"],
+      "gold_documents": ["nobel_prizes_2024.pdf"],
+      "gold_evidence": ["On 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics"]
+    },
+    {
+      "id": "demo-08",
+      "type": "single",
+      "question": "Where was Yann LeCun born?",
+      "answer": "Soisy-sous-Montmorency",
+      "answer_aliases": ["Soisy-sous-Montmorency, near Paris, France", "Soisy-sous-Montmorency, near Paris"],
+      "gold_documents": ["turing_award_2018.pdf"],
+      "gold_evidence": ["Yann LeCun was born in 1960 in Soisy-sous-Montmorency"]
+    },
+    {
+      "id": "demo-09",
+      "type": "bridge",
+      "question": "Which deep learning team merged with the company that developed AlphaGo to form Google DeepMind?",
+      "answer": "Google Brain",
+      "answer_aliases": ["Google Brain, the deep learning team of Google Research"],
+      "gold_documents": ["deepmind_history.docx"],
+      "gold_evidence": [
+        "DeepMind's program AlphaGo defeated Lee Sedol",
+        "DeepMind merged with Google Brain, the deep learning team of Google Research"
+      ]
+    },
+    {
+      "id": "demo-10",
+      "type": "comparison",
+      "question": "Which organisation was founded first, DeepMind or OpenAI?",
+      "answer": "DeepMind",
+      "answer_aliases": ["DeepMind Technologies"],
+      "gold_documents": ["deepmind_history.docx", "openai_and_transformers.txt"],
+      "gold_evidence": [
+        "DeepMind Technologies was founded in London in 2010",
+        "OpenAI was founded in December 2015 in San Francisco"
+      ]
+    },
+    {
+      "id": "demo-11",
+      "type": "unanswerable",
+      "question": "Who won the 2030 FIFA World Cup final?",
+      "answer": "",
+      "answer_aliases": [],
+      "gold_documents": [],
+      "gold_evidence": []
+    },
+    {
+      "id": "demo-12",
+      "type": "unanswerable",
+      "question": "What is the boiling point of liquid nitrogen in Kelvin?",
+      "answer": "",
+      "answer_aliases": [],
+      "gold_documents": [],
+      "gold_evidence": []
+    }
+  ]
+}

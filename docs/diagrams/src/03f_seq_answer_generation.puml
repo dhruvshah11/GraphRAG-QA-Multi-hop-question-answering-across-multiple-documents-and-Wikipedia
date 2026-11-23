@@ -1,0 +1,37 @@
+@startuml seq_answer_generation
+!include _theme.iuml
+title F. Answer generation with citations
+autonumber
+participant QAPipeline as P
+participant AnswerGenerator as AG
+participant "Seq2SeqBackend\n(Flan-T5)" as T5
+participant "ReaderBackend\n(TinyRoBERTa SQuAD2)" as RD
+participant ExtractiveBackend as EX
+participant CitationBuilder as CB
+participant "assess_confidence" as CF
+
+P -> AG : generate(question, evidence, chain, backend=auto)
+AG -> T5 : compact chain context (<= 330 words)
+alt cautious prompt answers
+  T5 --> AG : answer + token probability
+else "unanswerable"
+  AG -> T5 : plain reading-comprehension prompt
+  T5 --> AG : answer (support x 0.5)
+end
+AG -> AG : _ground(): answer must occur in an evidence passage\n(or token-F1 >= 0.6 with an evidence sentence)
+alt rejected or abstained
+  AG -> RD : best span per passage + chain context
+  RD --> AG : span + P(span vs no-answer)
+end
+opt no model available
+  AG -> EX : sentence scoring + answer-type entity
+end
+AG -> AG : build_reasoning(): fact steps (quoted evidence sentences)\n+ inference step combining them
+AG --> P : GenerationResult
+P -> CB : build(result, evidence)
+CB -> CB : per claim: locate supporting sentence,\nsupport score; drop citations < 0.3
+P -> CF : retrieval, coverage, chain, answer support,\nentity grounding
+alt insufficient
+  P --> P : answer = "Insufficient evidence found to\nanswer this question reliably." + reasons
+end
+@enduml

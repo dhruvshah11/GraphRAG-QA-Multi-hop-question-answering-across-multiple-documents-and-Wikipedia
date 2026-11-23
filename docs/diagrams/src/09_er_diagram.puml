@@ -1,0 +1,115 @@
+@startuml er_diagram
+!pragma layout smetana
+!include _theme.iuml
+title Entity-Relationship diagram (SQLite schema)
+hide circle
+skinparam linetype ortho
+entity documents {
+  * id : TEXT <<PK>>
+  --
+  name : TEXT
+  file_type : TEXT
+  source_type : TEXT
+  checksum : TEXT
+  num_pages, num_chunks : INT
+  status : TEXT
+  created_at, processed_at : TEXT
+}
+entity pages {
+  * document_id : TEXT <<FK>>
+  * page_number : INT
+  --
+  text : TEXT
+  char_offset : INT
+}
+entity chunks {
+  * id : TEXT <<PK>>
+  --
+  document_id : TEXT <<FK>>
+  chunk_index : INT
+  text : TEXT
+  page_number, page_end : INT
+  char_start, char_end : INT
+  token_count : INT
+  section : TEXT
+  vector_id : INT <<UNIQUE>>
+}
+entity entity_mentions {
+  * id : INT <<PK>>
+  --
+  chunk_id : TEXT <<FK>>
+  document_id : TEXT <<FK>>
+  text, label, normalized : TEXT
+  char_start, char_end : INT
+}
+entity entities {
+  * id : TEXT <<PK>>
+  --
+  name, label, category : TEXT
+  normalized : TEXT
+  aliases : JSON
+  mention_count : INT
+}
+entity relations {
+  * id : INT <<PK>>
+  --
+  chunk_id : TEXT <<FK>>
+  source_normalized : TEXT
+  relation : TEXT
+  target_normalized : TEXT
+  sentence : TEXT
+}
+entity queries {
+  * id : TEXT <<PK>>
+  --
+  question, mode, strategy : TEXT
+  top_k, max_hops : INT
+  latency_ms : REAL
+  created_at : TEXT
+}
+entity answers {
+  * id : TEXT <<PK>>
+  --
+  query_id : TEXT <<FK>>
+  answer : TEXT
+  reasoning_summary : TEXT
+  confidence : REAL
+  insufficient_evidence : INT
+  payload : JSON
+}
+entity citations {
+  * id : INT <<PK>>
+  --
+  answer_id : TEXT <<FK>>
+  citation_index : INT
+  chunk_id : TEXT
+  page_number : INT
+  supporting_sentence : TEXT
+  retrieval_score, graph_score, gnn_score : REAL
+}
+entity evaluation_runs {
+  * id : TEXT <<PK>>
+  --
+  dataset, status : TEXT
+  config, summary : JSON
+}
+entity evaluation_results {
+  * id : INT <<PK>>
+  --
+  run_id : TEXT <<FK>>
+  question_id, strategy : TEXT
+  exact_match, f1 : REAL
+  precision_at_k, recall_at_k, mrr : REAL
+  evidence_recall, citation_coverage : REAL
+  answer_latency_ms : REAL
+}
+documents ||--o{ pages
+documents ||--o{ chunks
+chunks ||--o{ entity_mentions
+entities ||..o{ entity_mentions : "resolved from (normalized)"
+chunks ||--o{ relations
+queries ||--|| answers
+answers ||--o{ citations
+chunks ||..o{ citations : "cited passage"
+evaluation_runs ||--o{ evaluation_results
+@enduml

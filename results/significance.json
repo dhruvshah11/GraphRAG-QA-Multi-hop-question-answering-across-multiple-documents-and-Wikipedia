@@ -1,0 +1,461 @@
+{
+  "run_id": "eval-73113547b7",
+  "questions": 300,
+  "bootstrap_samples": 10000,
+  "seed": 0,
+  "pairs": [
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "exact_match",
+      "mean_diff": -0.0033,
+      "ci95": [
+        -0.0267,
+        0.02
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "f1",
+      "mean_diff": -0.0122,
+      "ci95": [
+        -0.0356,
+        0.0111
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "precision_at_k",
+      "mean_diff": 0.0183,
+      "ci95": [
+        -0.0033,
+        0.0417
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "recall_at_k",
+      "mean_diff": 0.0183,
+      "ci95": [
+        -0.0033,
+        0.0417
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "mrr",
+      "mean_diff": -0.0022,
+      "ci95": [
+        -0.0174,
+        0.0133
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "evidence_recall",
+      "mean_diff": 0.0117,
+      "ci95": [
+        -0.0067,
+        0.03
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "graph",
+      "metric": "citation_precision",
+      "mean_diff": 0.0144,
+      "ci95": [
+        -0.0144,
+        0.0433
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "exact_match",
+      "mean_diff": 0.06,
+      "ci95": [
+        0.0167,
+        0.1
+      ],
+      "significant": true
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "f1",
+      "mean_diff": 0.0605,
+      "ci95": [
+        0.0168,
+        0.1043
+      ],
+      "significant": true
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "precision_at_k",
+      "mean_diff": 0.0417,
+      "ci95": [
+        0.0167,
+        0.0667
+      ],
+      "significant": true
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "recall_at_k",
+      "mean_diff": 0.0417,
+      "ci95": [
+        0.0167,
+        0.0667
+      ],
+      "significant": true
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "mrr",
+      "mean_diff": -0.0025,
+      "ci95": [
+        -0.0166,
+        0.0119
+      ],
+      "significant": false
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "evidence_recall",
+      "mean_diff": 0.0917,
+      "ci95": [
+        0.0667,
+        0.1183
+      ],
+      "significant": true
+    },
+    {
+      "a": "gnn",
+      "b": "hybrid",
+      "metric": "citation_precision",
+      "mean_diff": 0.0172,
+      "ci95": [
+        -0.0294,
+        0.0661
+      ],
+      "significant": false
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "exact_match",
+      "mean_diff": 0.0633,
+      "ci95": [
+        0.0167,
+        0.1067
+      ],
+      "significant": true
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "f1",
+      "mean_diff": 0.0726,
+      "ci95": [
+        0.0277,
+        0.1167
+      ],
+      "significant": true
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "precision_at_k",
+      "mean_diff": 0.0233,
+      "ci95": [
+        0.0017,
+        0.045
+      ],
+      "significant": true
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "recall_at_k",
+      "mean_diff": 0.0233,
+      "ci95": [
+        0.0017,
+        0.045
+      ],
+      "significant": true
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "mrr",
+      "mean_diff": -0.0003,
+      "ci95": [
+        -0.0132,
+        0.0127
+      ],
+      "significant": false
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "evidence_recall",
+      "mean_diff": 0.08,
+      "ci95": [
+        0.0583,
+        0.1033
+      ],
+      "significant": true
+    },
+    {
+      "a": "graph",
+      "b": "hybrid",
+      "metric": "citation_precision",
+      "mean_diff": 0.0028,
+      "ci95": [
+        -0.0456,
+        0.0533
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "exact_match",
+      "mean_diff": 0.0133,
+      "ci95": [
+        -0.0167,
+        0.0467
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "f1",
+      "mean_diff": 0.0235,
+      "ci95": [
+        -0.0078,
+        0.0561
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "precision_at_k",
+      "mean_diff": 0.0633,
+      "ci95": [
+        0.035,
+        0.0917
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "recall_at_k",
+      "mean_diff": 0.0633,
+      "ci95": [
+        0.035,
+        0.0917
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "mrr",
+      "mean_diff": 0.0336,
+      "ci95": [
+        0.0083,
+        0.0596
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "evidence_recall",
+      "mean_diff": 0.0417,
+      "ci95": [
+        0.02,
+        0.065
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "faiss",
+      "metric": "citation_precision",
+      "mean_diff": 0.025,
+      "ci95": [
+        -0.0133,
+        0.0633
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "exact_match",
+      "mean_diff": -0.02,
+      "ci95": [
+        -0.06,
+        0.02
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "f1",
+      "mean_diff": -0.0144,
+      "ci95": [
+        -0.0518,
+        0.0229
+      ],
+      "significant": false
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "precision_at_k",
+      "mean_diff": 0.0417,
+      "ci95": [
+        0.0117,
+        0.0717
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "recall_at_k",
+      "mean_diff": 0.0417,
+      "ci95": [
+        0.0117,
+        0.0717
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "mrr",
+      "mean_diff": 0.0319,
+      "ci95": [
+        0.0073,
+        0.0559
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "evidence_recall",
+      "mean_diff": 0.03,
+      "ci95": [
+        0.0017,
+        0.0583
+      ],
+      "significant": true
+    },
+    {
+      "a": "hybrid",
+      "b": "bm25",
+      "metric": "citation_precision",
+      "mean_diff": 0.0283,
+      "ci95": [
+        -0.0183,
+        0.0767
+      ],
+      "significant": false
+    }
+  ],
+  "per_question_type": {
+    "comparison": {
+      "questions": 57,
+      "bm25": {
+        "exact_match": 0.2281,
+        "f1": 0.3464,
+        "precision_at_k": 0.6491,
+        "evidence_recall": 0.8158
+      },
+      "faiss": {
+        "exact_match": 0.2632,
+        "f1": 0.3777,
+        "precision_at_k": 0.7719,
+        "evidence_recall": 0.9123
+      },
+      "gnn": {
+        "exact_match": 0.2281,
+        "f1": 0.3324,
+        "precision_at_k": 0.7807,
+        "evidence_recall": 0.9386
+      },
+      "graph": {
+        "exact_match": 0.2456,
+        "f1": 0.3622,
+        "precision_at_k": 0.7719,
+        "evidence_recall": 0.9474
+      },
+      "hybrid": {
+        "exact_match": 0.2105,
+        "f1": 0.3289,
+        "precision_at_k": 0.7895,
+        "evidence_recall": 0.9386
+      }
+    },
+    "bridge": {
+      "questions": 243,
+      "bm25": {
+        "exact_match": 0.358,
+        "f1": 0.4761,
+        "precision_at_k": 0.6337,
+        "evidence_recall": 0.7819
+      },
+      "faiss": {
+        "exact_match": 0.3086,
+        "f1": 0.422,
+        "precision_at_k": 0.5782,
+        "evidence_recall": 0.7449
+      },
+      "gnn": {
+        "exact_match": 0.4074,
+        "f1": 0.5363,
+        "precision_at_k": 0.7058,
+        "evidence_recall": 0.9033
+      },
+      "graph": {
+        "exact_match": 0.4074,
+        "f1": 0.5444,
+        "precision_at_k": 0.6852,
+        "evidence_recall": 0.8868
+      },
+      "hybrid": {
+        "exact_match": 0.3374,
+        "f1": 0.4625,
+        "precision_at_k": 0.6523,
+        "evidence_recall": 0.7901
+      }
+    }
+  }
+}

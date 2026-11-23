@@ -1,0 +1,48 @@
+@startuml activity_qa
+!include _theme.iuml
+title End-to-end question answering workflow
+start
+:User enters question, mode, strategy,\ntop-k and max hops;
+if (mode?) then (open-domain)
+  :Search Wikipedia (question + question entities);
+  if (Wikipedia reachable?) then (no)
+    :Return HTTP 503 with explanation;
+    stop
+  endif
+  :Fetch articles -> sections -> chunks;
+  :Find bridge entities in best passages;
+  :Fetch bridge articles (hop 2);
+  :Build in-memory corpus (embed, NER, FAISS, BM25, graph);
+else (multi-document)
+  if (processed documents exist?) then (no)
+    :Return HTTP 409 "upload documents first";
+    stop
+  endif
+  :Use persistent corpus snapshot;
+endif
+:Compute semantic, BM25 and hybrid scores;
+:Rank passages (FAISS / BM25 / hybrid);
+:Extract and match question entities;
+:Build question subgraph\n(seeds + multi-hop expansion);
+:Enumerate evidence chains\n(simple paths, cutoff = max hops);
+:Graph heuristic scores (PPR + chain support);
+if (trained GNN checkpoint?) then (yes)
+  :GAT reranking + chain rescoring;
+else (no)
+  :Fall back to graph heuristic (noted in response);
+endif
+:Select evidence (top chain + top passages);
+:Generate answer (Flan-T5 -> reader -> extractive);
+if (answer grounded in evidence?) then (no)
+  :Reject answer;
+endif
+:Validate citations (support per claim);
+:Compute confidence from measured signals;
+if (similarity, coverage, entity grounding,\nanswer support and confidence OK?) then (yes)
+  :Return answer, fact/inference steps,\nevidence chain, citations, scores;
+else (no)
+  #FFF3CD:Return "Insufficient evidence found to answer\nthis question reliably." + reasons;
+endif
+:Persist query, answer, citations, timings, subgraph;
+stop
+@enduml

@@ -1,0 +1,45 @@
+@startuml seq_multidoc_qa
+!include _theme.iuml
+title B. Multi-document question answering
+autonumber
+actor User
+participant "React UI\n(QA page)" as UI
+participant "FastAPI\n/api/qa/ask" as API
+participant QAPipeline as P
+participant CorpusManager as CM
+participant GraphReasoner as GR
+participant "Semantic / BM25 /\nHybrid Retriever" as R
+participant GraphBuilder as GB
+participant GraphTraversal as GT
+participant GraphHeuristicRanker as GH
+participant GNNRanker as GNN
+participant AnswerGenerator as AG
+participant CitationBuilder as CB
+database SQLite as DB
+
+User -> UI : question, strategy, top-k, max hops
+UI -> API : POST {question, mode, strategy, top_k, max_hops}
+API -> P : ask(...)
+P -> CM : corpus snapshot
+alt no processed documents
+  P --> API : NoDocumentsError -> HTTP 409
+end
+P -> GR : analyze(corpus, question)
+GR -> R : QueryScores (cosine, BM25, hybrid)\n+ top-k rankings
+GR -> GR : match question entities\n(spaCy + EntityRegistry)
+GR -> GB : build_question_graph(seeds, max_hops)
+GR -> GT : find_chains()
+GR -> GH : PPR + chain support -> graph scores
+opt trained checkpoint available
+  GR -> GNN : score(subgraph) -> P(evidence)
+end
+GR --> P : rankings for all 5 strategies, chains
+P -> P : select_evidence(strategy)\n(top chain first, then ranking)
+P -> AG : generate(question, evidence, chain)
+AG -> AG : backend chain + grounding check
+P -> CB : build(result, evidence)\n(validate support per claim)
+P -> P : assess_confidence()\n(insufficient evidence?)
+P -> DB : save query, answer, citations,\nmetrics; save subgraph JSON
+P --> API : structured payload
+API --> UI : answer, reasoning, chain,\ncitations, scores, timings
+@enduml

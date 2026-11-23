@@ -1,0 +1,15 @@
+Geoffrey Hinton - Research Profile
+
+Geoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December 1947 in Wimbledon, London.
+
+Hinton studied experimental psychology at King's College, Cambridge, and graduated with a Bachelor of Arts in 1970. He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.
+
+In 1986, together with David Rumelhart and Ronald J. Williams, Hinton published an influential paper in the journal Nature that popularised the backpropagation algorithm for training multi-layer neural networks.
+
+After research positions at the University of California, San Diego and at Carnegie Mellon University, Hinton joined the Department of Computer Science at the University of Toronto in 1987.
+
+In 2012, Hinton and his graduate students Alex Krizhevsky and Ilya Sutskever designed AlexNet, a deep convolutional neural network that won the ImageNet Large Scale Visual Recognition Challenge by a wide margin. Sutskever completed his PhD at the University of Toronto under Hinton's supervision.
+
+Hinton, Krizhevsky and Sutskever then founded the start-up DNNresearch, which was acquired by Google in 2013. Afterwards Hinton divided his time between Google Brain and the University of Toronto.
+
+In May 2023 Hinton announced that he had left Google so that he could speak freely about the risks of artificial intelligence.

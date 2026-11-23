@@ -1,0 +1,34 @@
+{
+  "best_epoch": 2,
+  "epochs_run": 10,
+  "train_seconds": 14.37,
+  "best_val": {
+    "epoch": 2,
+    "train_loss": 0.4720669222435416,
+    "val_precision_at_k": 0.6975,
+    "val_recall_at_k": 0.705,
+    "val_mrr": 0.9221309523809523,
+    "val_all_gold_in_top_k": 0.44,
+    "val_graphs_with_gold": 200,
+    "val_loss": 0.42485208332538604
+  },
+  "baseline_val_hybrid": {
+    "precision_at_k": 0.7,
+    "recall_at_k": 0.7075,
+    "mrr": 0.9259166666666667,
+    "all_gold_in_top_k": 0.455,
+    "graphs_with_gold": 200
+  },
+  "baseline_val_graph_heuristic": {
+    "precision_at_k": 0.7225,
+    "recall_at_k": 0.73,
+    "mrr": 0.9344642857142859,
+    "all_gold_in_top_k": 0.495,
+    "graphs_with_gold": 200
+  },
+  "num_parameters": 43275,
+  "total_seconds": 553.4,
+  "training_source": "hotpotqa",
+  "num_train_graphs": 1000,
+  "num_val_graphs": 200
+}

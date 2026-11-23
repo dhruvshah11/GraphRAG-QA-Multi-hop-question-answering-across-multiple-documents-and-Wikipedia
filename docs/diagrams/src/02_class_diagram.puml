@@ -1,0 +1,290 @@
+@startuml class_diagram
+!pragma layout smetana
+!include _theme.iuml
+title GraphRAG-QA - Class Diagram (core domain and services)
+hide empty members
+
+package "core.domain" {
+  class Document {
+    id: str
+    name: str
+    file_type: str
+    source_type: str
+    pages: list[PageText]
+    sections: list[Section]
+    page_for_offset(offset): int
+  }
+  class PageText {
+    page_number: int
+    text: str
+    char_offset: int
+  }
+  class TextChunk {
+    id: str
+    document_id: str
+    text: str
+    page_number: int
+    char_start: int
+    char_end: int
+    token_count: int
+    section: str
+  }
+  class EntityMention {
+    text: str
+    label: str
+    normalized: str
+    chunk_id: str
+    sentence_index: int
+  }
+  class Entity {
+    id: str
+    name: str
+    category: str
+    aliases: set
+    chunk_ids: set
+  }
+  class RetrievedPassage {
+    chunk: TextChunk
+    semantic_score: float
+    bm25_score: float
+    hybrid_score: float
+    graph_score: float
+    gnn_score: float
+    rank: int
+    hop: int
+  }
+  class EvidenceChain {
+    steps: list[ChainStep]
+    score: float
+    components: dict
+  }
+  class ChainStep {
+    chunk_id: str
+    via_entity: str
+    relevance: float
+    reason: str
+  }
+  class Citation {
+    index: int
+    chunk_id: str
+    page_number: int
+    supporting_sentence: str
+    retrieval_score: float
+    graph_score: float
+    gnn_score: float
+    support_score: float
+  }
+}
+
+package "ingestion" {
+  class DocumentProcessor {
+    validate(filename, size)
+    register_upload(filename, data)
+    extract(doc): Document
+  }
+  class IngestionService {
+    process_document(doc_id)
+    delete_document(doc_id)
+  }
+  class Chunker {
+    chunk_size: int = 400
+    chunk_overlap: int = 80
+    chunk_document(doc): list[TextChunk]
+  }
+}
+
+package "entities" {
+  class EntityExtractor {
+    extract_chunks(chunks)
+    question_entities(question)
+  }
+  class EntityRegistry {
+    build(mentions)
+    match(text)
+    specificity(entity_id): float
+  }
+}
+
+package "retrieval" {
+  class EmbeddingGenerator {
+    model_name: str
+    encode_passages(texts)
+    encode_query(text)
+  }
+  class VectorStore {
+    index: IndexIDMap2
+    add(vectors, ids)
+    remove(ids)
+    search(query, k)
+    save()
+  }
+  class BM25Index {
+    scores(query)
+    normalize(raw)
+  }
+  abstract class Retriever {
+    search(question, top_k)
+    {abstract} _rank()
+  }
+  class SemanticRetriever
+  class BM25Retriever
+  class HybridRetriever {
+    alpha: float = 0.7
+  }
+  class Corpus {
+    chunks
+    embeddings
+  }
+  class CorpusManager {
+    refresh()
+    index_document()
+    rebuild_index()
+  }
+  class OpenDomainRetriever {
+    build_corpus(question)
+  }
+  class WikipediaClient {
+    search(query)
+    fetch_article(title)
+  }
+}
+
+package "graph" {
+  class EvidenceGraph {
+    G: MultiDiGraph
+    add_node()
+    add_edge()
+    to_dict()
+    save_graphml()
+  }
+  class GraphBuilder {
+    build_corpus_graph()
+    build_question_graph()
+  }
+  class QuestionGraph {
+    passages: dict
+    question_entities: dict
+  }
+  class GraphTraversal {
+    find_chains(qg, max_hops)
+    rescore(chains, relevance)
+  }
+  class GraphHeuristicRanker {
+    personalized_pagerank()
+    score(qg, chains)
+  }
+}
+
+package "gnn" {
+  class FeatureBuilder {
+    build(qg, corpus, q_vec): Data
+  }
+  class GATReranker <<nn.Module>> {
+    input_proj: Linear
+    gat1: GATConv
+    gat2: GATConv
+    scorer: MLP
+    forward()
+  }
+  class GNNTrainer {
+    train(train_set, val_set)
+  }
+  class GNNRanker {
+    is_available: bool
+    score(qg, corpus, q_vec)
+  }
+}
+
+package "generation" {
+  class AnswerGenerator {
+    generate(question, evidence, chain)
+    _ground()
+    build_reasoning()
+  }
+  abstract class GenerationBackend {
+    {abstract} generate()
+  }
+  class ExtractiveBackend
+  class ReaderBackend
+  class Seq2SeqBackend
+  class OllamaBackend
+  class AnthropicBackend
+  class CitationBuilder {
+    build(result, evidence)
+  }
+}
+
+package "pipeline / api / evaluation" {
+  class GraphReasoner {
+    analyze(corpus, question)
+  }
+  class QAPipeline {
+    ask(question, mode, strategy)
+    select_evidence()
+  }
+  class APIController {
+    upload()
+    ask()
+    full_graph()
+    start_evaluation()
+    start_training()
+  }
+  class Evaluator {
+    run(dataset, strategies)
+  }
+  class BenchmarkRunner {
+    run(questions, repeats)
+  }
+  class Container <<composition root>>
+}
+
+Document *-- "1..*" PageText
+Document "1" o-- "*" TextChunk
+TextChunk "1" o-- "*" EntityMention
+EntityRegistry o-- "*" Entity
+EvidenceChain *-- "1..*" ChainStep
+RetrievedPassage --> TextChunk
+Retriever <|-- SemanticRetriever
+Retriever <|-- BM25Retriever
+Retriever <|-- HybridRetriever
+Retriever --> Corpus
+Corpus *-- VectorStore
+Corpus *-- BM25Index
+Corpus *-- EntityRegistry
+Corpus *-- EvidenceGraph
+CorpusManager --> Corpus
+CorpusManager --> EmbeddingGenerator
+CorpusManager --> EntityExtractor
+OpenDomainRetriever --> WikipediaClient
+GraphBuilder ..> QuestionGraph : creates
+QuestionGraph *-- EvidenceGraph
+GraphTraversal ..> EvidenceChain : produces
+GNNRanker *-- GATReranker
+GNNRanker *-- FeatureBuilder
+GNNTrainer ..> GATReranker : trains
+GenerationBackend <|-- ExtractiveBackend
+GenerationBackend <|-- ReaderBackend
+GenerationBackend <|-- Seq2SeqBackend
+GenerationBackend <|-- OllamaBackend
+GenerationBackend <|-- AnthropicBackend
+AnswerGenerator o-- GenerationBackend
+CitationBuilder ..> Citation : creates
+GraphReasoner --> GraphBuilder
+GraphReasoner --> GraphTraversal
+GraphReasoner --> GraphHeuristicRanker
+GraphReasoner --> GNNRanker
+GraphReasoner ..> Retriever
+QAPipeline --> GraphReasoner
+QAPipeline --> AnswerGenerator
+QAPipeline --> CitationBuilder
+QAPipeline --> CorpusManager
+QAPipeline --> OpenDomainRetriever
+IngestionService --> DocumentProcessor
+IngestionService --> Chunker
+IngestionService --> CorpusManager
+APIController --> Container
+Container *-- QAPipeline
+Container *-- IngestionService
+Evaluator --> QAPipeline
+BenchmarkRunner --> GraphReasoner
+@enduml

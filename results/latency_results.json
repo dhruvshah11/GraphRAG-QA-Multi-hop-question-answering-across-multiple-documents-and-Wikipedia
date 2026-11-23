@@ -1,0 +1,218 @@
+{
+  "generated_at": "2026-11-21T18:28:57+00:00",
+  "environment": {
+    "python": "3.13.2",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 186 Stepping 2, GenuineIntel",
+    "cpu_count": 16,
+    "ram_gb": 15.6,
+    "device": "cpu",
+    "rss_mb_end": 2047.5
+  },
+  "config": {
+    "chunk_size": 400,
+    "chunk_overlap": 80,
+    "top_k": 8,
+    "max_hops": 3,
+    "hybrid_alpha": 0.7,
+    "generator_backend": "auto",
+    "max_evidence_passages": 5,
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "questions": 12,
+    "repeats": 3,
+    "gnn_available": true
+  },
+  "stages": {
+    "1_ingestion": {
+      "files": [
+        {
+          "file": "deepmind_history.docx",
+          "type": "docx",
+          "bytes": 37386,
+          "pages": 1,
+          "chars": 1333,
+          "ms": 179.01,
+          "rss_delta_mb": 10.3
+        },
+        {
+          "file": "geoffrey_hinton_profile.txt",
+          "type": "txt",
+          "bytes": 1552,
+          "pages": 1,
+          "chars": 1536,
+          "ms": 1.99,
+          "rss_delta_mb": 0.0
+        },
+        {
+          "file": "nobel_prizes_2024.pdf",
+          "type": "pdf",
+          "bytes": 4471,
+          "pages": 2,
+          "chars": 1906,
+          "ms": 298.1,
+          "rss_delta_mb": 20.58
+        },
+        {
+          "file": "openai_and_transformers.txt",
+          "type": "txt",
+          "bytes": 920,
+          "pages": 1,
+          "chars": 910,
+          "ms": 7.01,
+          "rss_delta_mb": 0.0
+        },
+        {
+          "file": "turing_award_2018.pdf",
+          "type": "pdf",
+          "bytes": 2785,
+          "pages": 1,
+          "chars": 1043,
+          "ms": 12.76,
+          "rss_delta_mb": 0.02
+        }
+      ],
+      "total_ms": 498.87
+    },
+    "2_chunking": {
+      "ms": 1.21,
+      "chunks": 8,
+      "rss_delta_mb": 0.0,
+      "avg_tokens": 142.4,
+      "chunk_size": 400,
+      "chunk_overlap": 80
+    },
+    "3_embedding": {
+      "ms": 212.23,
+      "passages": 8,
+      "dim": 384,
+      "ms_per_passage": 26.53,
+      "rss_delta_mb": 37.46,
+      "model": "sentence-transformers/all-MiniLM-L6-v2"
+    },
+    "4_entity_extraction": {
+      "ms": 120.19,
+      "mentions": 156,
+      "relations": 130,
+      "ms_per_passage": 15.02,
+      "rss_delta_mb": 9.44
+    },
+    "5_graph_construction": {
+      "ms": 3.12,
+      "entity_resolution_ms": 2.01,
+      "faiss_index_ms": 0.047,
+      "bm25_index_ms": 0.848,
+      "nodes": 118,
+      "edges": 527,
+      "node_types": {
+        "question": 0,
+        "document": 5,
+        "passage": 8,
+        "entity": 105
+      },
+      "edge_types": {
+        "CONTAINS": 8,
+        "MENTIONS": 122,
+        "RELATED_TO": 127,
+        "CO_OCCURS_WITH": 254,
+        "SUPPORTS": 0,
+        "CONNECTS_TO": 16
+      },
+      "rss_delta_mb": 0.59
+    },
+    "6_query_embedding": {
+      "mean_ms": 8.318,
+      "median_ms": 7.913,
+      "p95_ms": 11.878,
+      "min_ms": 5.919,
+      "max_ms": 13.696,
+      "n": 36
+    },
+    "7_semantic_retrieval": {
+      "mean_ms": 3.981,
+      "median_ms": 3.904,
+      "p95_ms": 4.89,
+      "min_ms": 2.078,
+      "max_ms": 5.271,
+      "n": 36,
+      "note": "FAISS search only; query embedding measured separately"
+    },
+    "8_bm25_retrieval": {
+      "mean_ms": 0.048,
+      "median_ms": 0.049,
+      "p95_ms": 0.06,
+      "min_ms": 0.031,
+      "max_ms": 0.061,
+      "n": 36
+    },
+    "9_hybrid_retrieval": {
+      "mean_ms": 3.475,
+      "median_ms": 3.427,
+      "p95_ms": 4.172,
+      "min_ms": 2.766,
+      "max_ms": 4.699,
+      "n": 36
+    },
+    "10_question_graph_construction": {
+      "mean_ms": 2.01,
+      "median_ms": 2.051,
+      "p95_ms": 2.281,
+      "min_ms": 1.6,
+      "max_ms": 2.797,
+      "n": 36,
+      "avg_nodes": 57.1,
+      "avg_edges": 209.1,
+      "avg_candidate_passages": 8
+    },
+    "11_graph_traversal": {
+      "mean_ms": 3.813,
+      "median_ms": 3.582,
+      "p95_ms": 5.795,
+      "min_ms": 1.684,
+      "max_ms": 5.966,
+      "n": 36,
+      "avg_top_chain_length": 1.83,
+      "heuristic_ranking": {
+        "mean_ms": 4.772,
+        "median_ms": 5.053,
+        "p95_ms": 5.738,
+        "min_ms": 3.168,
+        "max_ms": 6.164,
+        "n": 36
+      }
+    },
+    "12_gnn_inference": {
+      "mean_ms": 12.684,
+      "median_ms": 11.199,
+      "p95_ms": 17.873,
+      "min_ms": 6.712,
+      "max_ms": 47.454,
+      "n": 36
+    },
+    "13_answer_generation": {
+      "extractive": {
+        "mean_ms": 307.404,
+        "median_ms": 276.616,
+        "p95_ms": 429.312,
+        "min_ms": 172.289,
+        "max_ms": 443.273,
+        "n": 36
+      },
+      "hf_reader": {
+        "mean_ms": 817.426,
+        "median_ms": 683.434,
+        "p95_ms": 1203.481,
+        "min_ms": 416.932,
+        "max_ms": 1829.819,
+        "n": 36
+      },
+      "hf_generator": {
+        "mean_ms": 757.178,
+        "median_ms": 664.658,
+        "p95_ms": 1218.728,
+        "min_ms": 297.174,
+        "max_ms": 2617.393,
+        "n": 36
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+@startuml component
+!pragma layout smetana
+!include _theme.iuml
+title Component diagram
+package "Frontend (React + Vite + TypeScript)" {
+  [Pages: Dashboard, Documents, QA,\nGraph Explorer, Analytics,\nEvaluation Lab, Settings] as Pages
+  [services/api.ts] as ApiClient
+  [React Flow / Recharts] as Viz
+}
+package "Backend (FastAPI)" {
+  [API routers + APIController] as API
+  [Job manager\n(background threads)] as Jobs
+  package "NLP engine" {
+    [Ingestion\n(PyMuPDF, python-docx)] as Ingest
+    [Chunker] as Chunk
+    [EntityExtractor (spaCy)] as NER
+    [EmbeddingGenerator\n(Sentence-Transformers)] as Emb
+  }
+  package "Retrieval engine" {
+    [VectorStore (FAISS)] as FAISS
+    [BM25Index] as BM25
+    [Hybrid / Semantic / BM25\nretrievers] as Ret
+    [OpenDomainRetriever\n+ WikipediaClient] as Wiki
+  }
+  package "Graph engine" {
+    [GraphBuilder\nEvidenceGraph (NetworkX)] as Graph
+    [GraphTraversal\nGraphHeuristicRanker] as Trav
+  }
+  package "GNN engine" {
+    [GATReranker (PyG)\nGNNRanker, GNNTrainer] as GNN
+  }
+  package "Answer generation engine" {
+    [AnswerGenerator\n(Flan-T5, reader, extractive,\noptional Ollama / Claude)] as Gen
+    [CitationBuilder\nconfidence] as Cite
+  }
+  [QAPipeline / GraphReasoner] as Pipe
+  [Evaluator / BenchmarkRunner] as Eval
+}
+database "Storage" {
+  [SQLite] as DB
+  [FAISS index file] as IDX
+  [Graph JSON / GraphML] as GF
+  [Model files] as MF
+}
+cloud "Wikipedia\nMediaWiki API" as WIKI
+
+Pages --> ApiClient
+Pages --> Viz
+ApiClient --> API : HTTP/JSON
+API --> Jobs
+API --> Pipe
+API --> Eval
+Jobs --> Ingest
+Ingest --> Chunk
+Chunk --> NER
+Chunk --> Emb
+Emb --> FAISS
+Pipe --> Ret
+Ret --> FAISS
+Ret --> BM25
+Pipe --> Wiki
+Wiki --> WIKI
+Pipe --> Graph
+Pipe --> Trav
+Pipe --> GNN
+Pipe --> Gen
+Gen --> Cite
+Eval --> Pipe
+API --> DB
+FAISS --> IDX
+Graph --> GF
+GNN --> MF
+Gen --> MF
+@enduml

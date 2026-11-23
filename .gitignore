@@ -1,0 +1,27 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# Runtime data (re-created by the application / scripts)
+data/uploads/*
+data/processed/*
+data/indexes/*
+data/graphs/*
+data/*.sqlite3*
+!data/**/.gitkeep
+
+# Downloaded models and tools (scripts/download_models.py, scripts/render_diagrams.py)
+models/embeddings/*
+models/generation/*
+tools/
+
+# Office lock files
+~$*

@@ -1,0 +1,995 @@
+{
+  "query_id": "ea5692c10726",
+  "question": "From which university did the 2024 Nobel Prize in Physics laureate from the University of Toronto receive his PhD?",
+  "mode": "multi_document",
+  "strategy": "gnn",
+  "effective_strategy": "gnn",
+  "answer": "University of Edinburgh",
+  "candidate_answer": "University of Edinburgh",
+  "answer_sentence": "He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.",
+  "answer_citations": [
+    2
+  ],
+  "reasoning_summary": "Evidence [1]: The Nobel Prize in Physics 2024 Evidence [2]: He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins. Inference [1][2]: Combining [1] and [2], the answer is \"University of Edinburgh\".",
+  "reasoning_steps": [
+    {
+      "step": 1,
+      "kind": "fact",
+      "text": "The Nobel Prize in Physics 2024",
+      "citations": [
+        1
+      ]
+    },
+    {
+      "step": 2,
+      "kind": "fact",
+      "text": "He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.",
+      "citations": [
+        2
+      ]
+    },
+    {
+      "step": 3,
+      "kind": "inference",
+      "text": "Combining [1] and [2], the answer is \"University of Edinburgh\".",
+      "citations": [
+        1,
+        2
+      ]
+    }
+  ],
+  "evidence_chain": [
+    {
+      "step": 1,
+      "chunk_id": "doc_9345fa0a65a2:c0000",
+      "document_name": "nobel_prizes_2024.pdf",
+      "page_number": 1,
+      "section": null,
+      "url": null,
+      "via_entity_id": null,
+      "via_entity_name": null,
+      "relevance": 0.9995,
+      "reason": "Retrieved directly (rank 1, hybrid score 0.70); mentions question entities '2024', 'Nobel Prize in Physics 2024', 'University of Toronto'; adds question terms: 2024, nobel, physic, prize, toronto, university",
+      "evidence_index": 1,
+      "text": "The Nobel Prize in Physics 2024\n\nOn 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics 2024 was awarded jointly to John J. Hopfield of Princeton University and Geoffrey E. Hinton of the University of Toronto \"for foundational discoveries and inventions that enable machine learning with artificial neural networks\".\n\nHopfield created an associative memory that can store and reconstruct patterns in data. This model is now known as the Hopfield network and is described using ideas from the physics of magnetic spin systems.\n\nHinton used the Hopfield network as the foundation for a new network, the Boltzmann machine, which can learn to recognise characteristic elements in a given type of data. The Boltzmann machine uses tools from statistical physics.\n\nThe prize amount of 11 million Swedish kronor was shared equally between the two laureates. The prizes were presented at the award ceremony in Stockholm on 10 December 2024.\n\nThe Nobel Prize in Chemistry 2024\n\nOn 9 October 2024, the Royal Swedish Academy of Sciences awarded the Nobel Prize in Chemistry 2024 with one half to David Baker of the University of Washington \"for computational protein design\" and the other half jointly to Demis Hassabis and John M. Jumper of Google DeepMind \"for protein structure prediction\".\n\nHassabis and Jumper developed the artificial intelligence model AlphaFold2, which predicts the three-dimensional structure of a protein from its amino acid sequence. The model has been used to predict the structure of virtually all of the roughly 200 million proteins that researchers have identified.\n\nBaker succeeded in building entirely new kinds of proteins that do not exist in nature, an achievement described by the committee as almost impossible.\n\nTogether, the physics and chemistry prizes of 2024 recognised the growing role of machine learning in scientific discovery."
+    },
+    {
+      "step": 2,
+      "chunk_id": "doc_6ee53fe19343:c0000",
+      "document_name": "geoffrey_hinton_profile.txt",
+      "page_number": 1,
+      "section": null,
+      "url": null,
+      "via_entity_id": "ent:geoffrey_hinton",
+      "via_entity_name": "Geoffrey Hinton",
+      "relevance": 0.2757,
+      "reason": "Linked to step 1 through the shared entity 'Geoffrey Hinton'; relevance 0.27; adds question terms: phd",
+      "evidence_index": 2,
+      "text": "Geoffrey Hinton - Research Profile\n\nGeoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December 1947 in Wimbledon, London.\n\nHinton studied experimental psychology at King's College, Cambridge, and graduated with a Bachelor of Arts in 1970. He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.\n\nIn 1986, together with David Rumelhart and Ronald J. Williams, Hinton published an influential paper in the journal Nature that popularised the backpropagation algorithm for training multi-layer neural networks.\n\nAfter research positions at the University of California, San Diego and at Carnegie Mellon University, Hinton joined the Department of Computer Science at the University of Toronto in 1987.\n\nIn 2012, Hinton and his graduate students Alex Krizhevsky and Ilya Sutskever designed AlexNet, a deep convolutional neural network that won the ImageNet Large Scale Visual Recognition Challenge by a wide margin. Sutskever completed his PhD at the University of Toronto under Hinton's supervision.\n\nHinton, Krizhevsky and Sutskever then founded the start-up DNNresearch, which was acquired by Google in 2013. Afterwards Hinton divided his time between Google Brain and the University of Toronto.\n\nIn May 2023 Hinton announced that he had left Google so that he could speak freely about the risks of artificial intelligence."
+    }
+  ],
+  "chains": [
+    {
+      "chunk_ids": [
+        "doc_9345fa0a65a2:c0000",
+        "doc_6ee53fe19343:c0000"
+      ],
+      "steps": [
+        {
+          "chunk_id": "doc_9345fa0a65a2:c0000",
+          "via_entity": null,
+          "via_entity_name": null,
+          "relevance": 0.9995,
+          "reason": "Retrieved directly (rank 1, hybrid score 0.70); mentions question entities '2024', 'Nobel Prize in Physics 2024', 'University of Toronto'; adds question terms: 2024, nobel, physic, prize, toronto, university"
+        },
+        {
+          "chunk_id": "doc_6ee53fe19343:c0000",
+          "via_entity": "ent:geoffrey_hinton",
+          "via_entity_name": "Geoffrey Hinton",
+          "relevance": 0.2757,
+          "reason": "Linked to step 1 through the shared entity 'Geoffrey Hinton'; relevance 0.27; adds question terms: phd"
+        }
+      ],
+      "score": 0.7126,
+      "components": {
+        "avg_relevance": 0.7824,
+        "coverage": 0.678,
+        "bridge_specificity": 0.7957,
+        "length": 2.0
+      },
+      "covered_terms": [
+        "2024",
+        "nobel",
+        "phd",
+        "physic",
+        "prize",
+        "toronto",
+        "university"
+      ],
+      "missing_terms": [
+        "laureate",
+        "receive"
+      ],
+      "length": 2
+    },
+    {
+      "chunk_ids": [
+        "doc_9345fa0a65a2:c0000",
+        "doc_73b725dbff8e:c0000"
+      ],
+      "steps": [
+        {
+          "chunk_id": "doc_9345fa0a65a2:c0000",
+          "via_entity": null,
+          "via_entity_name": null,
+          "relevance": 0.9995,
+          "reason": "Retrieved directly (rank 1, hybrid score 0.70); mentions question entities '2024', 'Nobel Prize in Physics 2024', 'University of Toronto'; adds question terms: 2024, nobel, physic, prize, toronto, university"
+        },
+        {
+          "chunk_id": "doc_73b725dbff8e:c0000",
+          "via_entity": "ent:demis_hassabis",
+          "via_entity_name": "Demis Hassabis",
+          "relevance": 0.1939,
+          "reason": "Linked to step 1 through the shared entity 'Demis Hassabis'; relevance 0.12; adds question terms: phd"
+        }
+      ],
+      "score": 0.7016,
+      "components": {
+        "avg_relevance": 0.7578,
+        "coverage": 0.678,
+        "bridge_specificity": 0.7957,
+        "length": 2.0
+      },
+      "covered_terms": [
+        "2024",
+        "nobel",
+        "phd",
+        "physic",
+        "prize",
+        "toronto",
+        "university"
+      ],
+      "missing_terms": [
+        "laureate",
+        "receive"
+      ],
+      "length": 2
+    },
+    {
+      "chunk_ids": [
+        "doc_9345fa0a65a2:c0000"
+      ],
+      "steps": [
+        {
+          "chunk_id": "doc_9345fa0a65a2:c0000",
+          "via_entity": null,
+          "via_entity_name": null,
+          "relevance": 0.9995,
+          "reason": "Retrieved directly (rank 1, hybrid score 0.70); mentions question entities '2024', 'Nobel Prize in Physics 2024', 'University of Toronto'; adds question terms: 2024, nobel, physic, prize, toronto, university"
+        }
+      ],
+      "score": 0.6828,
+      "components": {
+        "avg_relevance": 0.9995,
+        "coverage": 0.5825,
+        "bridge_specificity": 0.0,
+        "length": 1.0
+      },
+      "covered_terms": [
+        "2024",
+        "nobel",
+        "physic",
+        "prize",
+        "toronto",
+        "university"
+      ],
+      "missing_terms": [
+        "laureate",
+        "phd",
+        "receive"
+      ],
+      "length": 1
+    },
+    {
+      "chunk_ids": [
+        "doc_b0de41524a83:c0000",
+        "doc_9345fa0a65a2:c0000"
+      ],
+      "steps": [
+        {
+          "chunk_id": "doc_b0de41524a83:c0000",
+          "via_entity": null,
+          "via_entity_name": null,
+          "relevance": 0.3739,
+          "reason": "Retrieved directly (rank 2, hybrid score 0.28); mentions question entities 'University of Toronto', 'New York University'; adds question terms: prize, toronto, university"
+        },
+        {
+          "chunk_id": "doc_9345fa0a65a2:c0000",
+          "via_entity": "ent:geoffrey_hinton",
+          "via_entity_name": "Geoffrey Hinton",
+          "relevance": 0.9995,
+          "reason": "Linked to step 1 through the shared entity 'Geoffrey Hinton'; relevance 0.70; adds question terms: 2024, nobel, physic"
+        }
+      ],
+      "score": 0.575,
+      "components": {
+        "avg_relevance": 0.5616,
+        "coverage": 0.5825,
+        "bridge_specificity": 0.7957,
+        "length": 2.0
+      },
+      "covered_terms": [
+        "2024",
+        "nobel",
+        "physic",
+        "prize",
+        "toronto",
+        "university"
+      ],
+      "missing_terms": [
+        "laureate",
+        "phd",
+        "receive"
+      ],
+      "length": 2
+    },
+    {
+      "chunk_ids": [
+        "doc_b0de41524a83:c0000",
+        "doc_9345fa0a65a2:c0000",
+        "doc_6ee53fe19343:c0000"
+      ],
+      "steps": [
+        {
+          "chunk_id": "doc_b0de41524a83:c0000",
+          "via_entity": null,
+          "via_entity_name": null,
+          "relevance": 0.3739,
+          "reason": "Retrieved directly (rank 2, hybrid score 0.28); mentions question entities 'University of Toronto', 'New York University'; adds question terms: prize, toronto, university"
+        },
+        {
+          "chunk_id": "doc_9345fa0a65a2:c0000",
+          "via_entity": "ent:geoffrey_hinton",
+          "via_entity_name": "Geoffrey Hinton",
+          "relevance": 0.9995,
+          "reason": "Linked to step 1 through the shared entity 'Geoffrey Hinton'; relevance 0.70; adds question terms: 2024, nobel, physic"
+        },
+        {
+          "chunk_id": "doc_6ee53fe19343:c0000",
+          "via_entity": "ent:geoffrey_hinton",
+          "via_entity_name": "Geoffrey Hinton",
+          "relevance": 0.2757,
+          "reason": "Linked to step 2 through the shared entity 'Geoffrey Hinton'; relevance 0.27; adds question terms: phd"
+        }
+      ],
+      "score": 0.5344,
+      "components": {
+        "avg_relevance": 0.453,
+        "coverage": 0.678,
+        "bridge_specificity": 0.7957,
+        "length": 3.0
+      },
+      "covered_terms": [
+        "2024",
+        "nobel",
+        "phd",
+        "physic",
+        "prize",
+        "toronto",
+        "university"
+      ],
+      "missing_terms": [
+        "laureate",
+        "receive"
+      ],
+      "length": 3
+    }
+  ],
+  "citations": [
+    {
+      "index": 1,
+      "chunk_id": "doc_9345fa0a65a2:c0000",
+      "document_id": "doc_9345fa0a65a2",
+      "document_name": "nobel_prizes_2024.pdf",
+      "page_number": 1,
+      "page_end": 2,
+      "section": null,
+      "url": null,
+      "source_type": "upload",
+      "passage_text": "The Nobel Prize in Physics 2024\n\nOn 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics 2024 was awarded jointly to John J. Hopfield of Princeton University and Geoffrey E. Hinton of the University of Toronto \"for foundational discoveries and inventions that enable machine learning with artificial neural networks\".\n\nHopfield created an associative memory that can store and reconstruct patterns in data. This model is now known as the Hopfield network and is described using ideas from the physics of magnetic spin systems.\n\nHinton used the Hopfield network as the foundation for a new network, the Boltzmann machine, which can learn to recognise characteristic elements in a given type of data. The Boltzmann machine uses tools from statistical physics.\n\nThe prize amount of 11 million Swedish kronor was shared equally between the two laureates. The prizes were presented at the award ceremony in Stockholm on 10 December 2024.\n\nThe Nobel Prize in Chemistry 2024\n\nOn 9 October 2024, the Royal Swedish Academy of Sciences awarded the Nobel Prize in Chemistry 2024 with one half to David Baker of the University of Washington \"for computational protein design\" and the other half jointly to Demis Hassabis and John M. Jumper of Google DeepMind \"for protein structure prediction\".\n\nHassabis and Jumper developed the artificial intelligence model AlphaFold2, which predicts the three-dimensional structure of a protein from its amino acid sequence. The model has been used to predict the structure of virtually all of the roughly 200 million proteins that researchers have identified.\n\nBaker succeeded in building entirely new kinds of proteins that do not exist in nature, an achievement described by the committee as almost impossible.\n\nTogether, the physics and chemistry prizes of 2024 recognised the growing role of machine learning in scientific discovery.",
+      "supporting_sentence": "The Nobel Prize in Physics 2024",
+      "sentence_start": 0,
+      "sentence_end": 31,
+      "retrieval_score": 0.7011,
+      "graph_score": 0.8506,
+      "gnn_score": 0.9995,
+      "support_score": 1.0,
+      "claim": "The Nobel Prize in Physics 2024"
+    },
+    {
+      "index": 2,
+      "chunk_id": "doc_6ee53fe19343:c0000",
+      "document_id": "doc_6ee53fe19343",
+      "document_name": "geoffrey_hinton_profile.txt",
+      "page_number": 1,
+      "page_end": 1,
+      "section": null,
+      "url": null,
+      "source_type": "upload",
+      "passage_text": "Geoffrey Hinton - Research Profile\n\nGeoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December 1947 in Wimbledon, London.\n\nHinton studied experimental psychology at King's College, Cambridge, and graduated with a Bachelor of Arts in 1970. He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.\n\nIn 1986, together with David Rumelhart and Ronald J. Williams, Hinton published an influential paper in the journal Nature that popularised the backpropagation algorithm for training multi-layer neural networks.\n\nAfter research positions at the University of California, San Diego and at Carnegie Mellon University, Hinton joined the Department of Computer Science at the University of Toronto in 1987.\n\nIn 2012, Hinton and his graduate students Alex Krizhevsky and Ilya Sutskever designed AlexNet, a deep convolutional neural network that won the ImageNet Large Scale Visual Recognition Challenge by a wide margin. Sutskever completed his PhD at the University of Toronto under Hinton's supervision.\n\nHinton, Krizhevsky and Sutskever then founded the start-up DNNresearch, which was acquired by Google in 2013. Afterwards Hinton divided his time between Google Brain and the University of Toronto.\n\nIn May 2023 Hinton announced that he had left Google so that he could speak freely about the risks of artificial intelligence.",
+      "supporting_sentence": "He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.",
+      "sentence_start": 364,
+      "sentence_end": 508,
+      "retrieval_score": 0.2686,
+      "graph_score": 0.5474,
+      "gnn_score": 0.2757,
+      "support_score": 1.0,
+      "claim": "University of Edinburgh"
+    }
+  ],
+  "evidence_passages": [
+    {
+      "index": 1,
+      "chunk_id": "doc_9345fa0a65a2:c0000",
+      "document_name": "nobel_prizes_2024.pdf",
+      "page_number": 1,
+      "section": null,
+      "url": null,
+      "text": "The Nobel Prize in Physics 2024\n\nOn 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics 2024 was awarded jointly to John J. Hopfield of Princeton University and Geoffrey E. Hinton of the University of Toronto \"for foundational discoveries and inventions that enable machine learning with artificial neural networks\".\n\nHopfield created an associative memory that can store and reconstruct patterns in data. This model is now known as the Hopfield network and is described using ideas from the physics of magnetic spin systems.\n\nHinton used the Hopfield network as the foundation for a new network, the Boltzmann machine, which can learn to recognise characteristic elements in a given type of data. The Boltzmann machine uses tools from statistical physics.\n\nThe prize amount of 11 million Swedish kronor was shared equally between the two laureates. The prizes were presented at the award ceremony in Stockholm on 10 December 2024.\n\nThe Nobel Prize in Chemistry 2024\n\nOn 9 October 2024, the Royal Swedish Academy of Sciences awarded the Nobel Prize in Chemistry 2024 with one half to David Baker of the University of Washington \"for computational protein design\" and the other half jointly to Demis Hassabis and John M. Jumper of Google DeepMind \"for protein structure prediction\".\n\nHassabis and Jumper developed the artificial intelligence model AlphaFold2, which predicts the three-dimensional structure of a protein from its amino acid sequence. The model has been used to predict the structure of virtually all of the roughly 200 million proteins that researchers have identified.\n\nBaker succeeded in building entirely new kinds of proteins that do not exist in nature, an achievement described by the committee as almost impossible.\n\nTogether, the physics and chemistry prizes of 2024 recognised the growing role of machine learning in scientific discovery.",
+      "hybrid_score": 0.7011,
+      "semantic_score": 0.573,
+      "graph_score": 0.8506,
+      "gnn_score": 0.9995,
+      "chain_step": 1,
+      "reason": "Retrieved directly (rank 1, hybrid score 0.70); mentions question entities '2024', 'Nobel Prize in Physics 2024', 'University of Toronto'; adds question terms: 2024, nobel, physic, prize, toronto, university",
+      "cited": true
+    },
+    {
+      "index": 2,
+      "chunk_id": "doc_6ee53fe19343:c0000",
+      "document_name": "geoffrey_hinton_profile.txt",
+      "page_number": 1,
+      "section": null,
+      "url": null,
+      "text": "Geoffrey Hinton - Research Profile\n\nGeoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December 1947 in Wimbledon, London.\n\nHinton studied experimental psychology at King's College, Cambridge, and graduated with a Bachelor of Arts in 1970. He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.\n\nIn 1986, together with David Rumelhart and Ronald J. Williams, Hinton published an influential paper in the journal Nature that popularised the backpropagation algorithm for training multi-layer neural networks.\n\nAfter research positions at the University of California, San Diego and at Carnegie Mellon University, Hinton joined the Department of Computer Science at the University of Toronto in 1987.\n\nIn 2012, Hinton and his graduate students Alex Krizhevsky and Ilya Sutskever designed AlexNet, a deep convolutional neural network that won the ImageNet Large Scale Visual Recognition Challenge by a wide margin. Sutskever completed his PhD at the University of Toronto under Hinton's supervision.\n\nHinton, Krizhevsky and Sutskever then founded the start-up DNNresearch, which was acquired by Google in 2013. Afterwards Hinton divided his time between Google Brain and the University of Toronto.\n\nIn May 2023 Hinton announced that he had left Google so that he could speak freely about the risks of artificial intelligence.",
+      "hybrid_score": 0.2686,
+      "semantic_score": 0.2952,
+      "graph_score": 0.5474,
+      "gnn_score": 0.2757,
+      "chain_step": 2,
+      "reason": "Linked to step 1 through the shared entity 'Geoffrey Hinton'; relevance 0.27; adds question terms: phd",
+      "cited": true
+    },
+    {
+      "index": 3,
+      "chunk_id": "doc_b0de41524a83:c0000",
+      "document_name": "turing_award_2018.pdf",
+      "page_number": 1,
+      "section": null,
+      "url": null,
+      "text": "The 2018 ACM A.M. Turing Award\n\nOn 27 March 2019 the Association for Computing Machinery (ACM) announced that Yoshua Bengio, Geoffrey Hinton and Yann LeCun were the recipients of the 2018 ACM A.M. Turing Award for conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing.\n\nThe Turing Award is often described as the highest distinction in computer science. It carries a prize of 1 million US dollars, with financial support provided by Google.\n\nYoshua Bengio is a professor at the Universite de Montreal and the founder of Mila, the Quebec Artificial Intelligence Institute.\n\nYann LeCun was born in 1960 in Soisy-sous-Montmorency, near Paris, France. While working at AT&T Bell Laboratories he developed convolutional neural networks, including the LeNet architecture that was used to read handwritten digits on bank cheques.\n\nLeCun is a Silver Professor at New York University and served as Chief AI Scientist at Meta. Geoffrey Hinton is a professor emeritus at the University of Toronto.",
+      "hybrid_score": 0.277,
+      "semantic_score": 0.3323,
+      "graph_score": 0.4547,
+      "gnn_score": 0.3739,
+      "chain_step": null,
+      "reason": "Ranked #2 by the selected strategy",
+      "cited": false
+    },
+    {
+      "index": 4,
+      "chunk_id": "doc_73b725dbff8e:c0002",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "AlphaFold",
+      "url": null,
+      "text": "AlphaFold\n\nAt the CASP14 protein structure prediction assessment in 2020, AlphaFold 2 reached an accuracy that was competitive with experimental methods. John Jumper led the team that developed AlphaFold.\n\nIn 2021 DeepMind and EMBL's European Bioinformatics Institute released the AlphaFold Protein Structure Database, which made the predicted structures freely available to scientists.",
+      "hybrid_score": 0.1396,
+      "semantic_score": 0.1994,
+      "graph_score": 0.309,
+      "gnn_score": 0.2092,
+      "chain_step": null,
+      "reason": "Ranked #4 by the selected strategy",
+      "cited": false
+    },
+    {
+      "index": 5,
+      "chunk_id": "doc_73b725dbff8e:c0000",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "Founding / Acquisition by Google",
+      "url": null,
+      "text": "DeepMind: From a London Start-up to Google DeepMind\n\nFounding\n\nDeepMind Technologies was founded in London in 2010 by Demis Hassabis, Shane Legg and Mustafa Suleyman. The company set out to build general-purpose learning algorithms.\n\nDemis Hassabis, a former child chess prodigy, had earlier co-founded the video game developer Elixir Studios and completed a PhD in cognitive neuroscience at University College London.\n\nAcquisition by Google\n\nIn January 2014 Google acquired DeepMind. The purchase price was reported to be around 400 million pounds.",
+      "hybrid_score": 0.121,
+      "semantic_score": 0.1169,
+      "graph_score": 0.3724,
+      "gnn_score": 0.1939,
+      "chain_step": null,
+      "reason": "Ranked #5 by the selected strategy",
+      "cited": false
+    }
+  ],
+  "retrieved_passages": [
+    {
+      "chunk_id": "doc_9345fa0a65a2:c0000",
+      "document_id": "doc_9345fa0a65a2",
+      "document_name": "nobel_prizes_2024.pdf",
+      "page_number": 1,
+      "page_end": 2,
+      "section": null,
+      "url": null,
+      "text": "The Nobel Prize in Physics 2024\n\nOn 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics 2024 was awarded jointly to John J. Hopfield of Princeton University and Geoffrey E. Hinton of the University of Toronto \"for foundational discoveries and inventions that enable machine learning with artificial neural networks\".\n\nHopfield created an associative memory that can store and reconstruct patterns in data. This model is now known as the Hopfield network and is described using ideas from the physics of magnetic spin systems.\n\nHinton used the Hopfield network as the foundation for a new network, the Boltzmann machine, which can learn to recognise characteristic elements in a given type of data. The Boltzmann machine uses tools from statistical physics.\n\nThe prize amount of 11 million Swedish kronor was shared equally between the two laureates. The prizes were presented at the award ceremony in Stockholm on 10 December 2024.\n\nThe Nobel Prize in Chemistry 2024\n\nOn 9 October 2024, the Royal Swedish Academy of Sciences awarded the Nobel Prize in Chemistry 2024 with one half to David Baker of the University of Washington \"for computational protein design\" and the other half jointly to Demis Hassabis and John M. Jumper of Google DeepMind \"for protein structure prediction\".\n\nHassabis and Jumper developed the artificial intelligence model AlphaFold2, which predicts the three-dimensional structure of a protein from its amino acid sequence. The model has been used to predict the structure of virtually all of the roughly 200 million proteins that researchers have identified.\n\nBaker succeeded in building entirely new kinds of proteins that do not exist in nature, an achievement described by the committee as almost impossible.\n\nTogether, the physics and chemistry prizes of 2024 recognised the growing role of machine learning in scientific discovery.",
+      "char_start": 0,
+      "char_end": 1906,
+      "semantic_score": 0.573,
+      "bm25_raw": 8.4713,
+      "bm25_score": 1.0,
+      "hybrid_score": 0.7011,
+      "graph_score": 0.8506,
+      "gnn_score": 0.9995,
+      "final_score": 0.9995,
+      "rank": 1,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_b0de41524a83:c0000",
+      "document_id": "doc_b0de41524a83",
+      "document_name": "turing_award_2018.pdf",
+      "page_number": 1,
+      "page_end": 1,
+      "section": null,
+      "url": null,
+      "text": "The 2018 ACM A.M. Turing Award\n\nOn 27 March 2019 the Association for Computing Machinery (ACM) announced that Yoshua Bengio, Geoffrey Hinton and Yann LeCun were the recipients of the 2018 ACM A.M. Turing Award for conceptual and engineering breakthroughs that have made deep neural networks a critical component of computing.\n\nThe Turing Award is often described as the highest distinction in computer science. It carries a prize of 1 million US dollars, with financial support provided by Google.\n\nYoshua Bengio is a professor at the Universite de Montreal and the founder of Mila, the Quebec Artificial Intelligence Institute.\n\nYann LeCun was born in 1960 in Soisy-sous-Montmorency, near Paris, France. While working at AT&T Bell Laboratories he developed convolutional neural networks, including the LeNet architecture that was used to read handwritten digits on bank cheques.\n\nLeCun is a Silver Professor at New York University and served as Chief AI Scientist at Meta. Geoffrey Hinton is a professor emeritus at the University of Toronto.",
+      "char_start": 0,
+      "char_end": 1043,
+      "semantic_score": 0.3323,
+      "bm25_raw": 1.2539,
+      "bm25_score": 0.148,
+      "hybrid_score": 0.277,
+      "graph_score": 0.4547,
+      "gnn_score": 0.3739,
+      "final_score": 0.3739,
+      "rank": 2,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_6ee53fe19343:c0000",
+      "document_id": "doc_6ee53fe19343",
+      "document_name": "geoffrey_hinton_profile.txt",
+      "page_number": 1,
+      "page_end": 1,
+      "section": null,
+      "url": null,
+      "text": "Geoffrey Hinton - Research Profile\n\nGeoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December 1947 in Wimbledon, London.\n\nHinton studied experimental psychology at King's College, Cambridge, and graduated with a Bachelor of Arts in 1970. He then completed a PhD in artificial intelligence at the University of Edinburgh in 1978, under the supervision of Christopher Longuet-Higgins.\n\nIn 1986, together with David Rumelhart and Ronald J. Williams, Hinton published an influential paper in the journal Nature that popularised the backpropagation algorithm for training multi-layer neural networks.\n\nAfter research positions at the University of California, San Diego and at Carnegie Mellon University, Hinton joined the Department of Computer Science at the University of Toronto in 1987.\n\nIn 2012, Hinton and his graduate students Alex Krizhevsky and Ilya Sutskever designed AlexNet, a deep convolutional neural network that won the ImageNet Large Scale Visual Recognition Challenge by a wide margin. Sutskever completed his PhD at the University of Toronto under Hinton's supervision.\n\nHinton, Krizhevsky and Sutskever then founded the start-up DNNresearch, which was acquired by Google in 2013. Afterwards Hinton divided his time between Google Brain and the University of Toronto.\n\nIn May 2023 Hinton announced that he had left Google so that he could speak freely about the risks of artificial intelligence.",
+      "char_start": 0,
+      "char_end": 1536,
+      "semantic_score": 0.2952,
+      "bm25_raw": 1.7501,
+      "bm25_score": 0.2066,
+      "hybrid_score": 0.2686,
+      "graph_score": 0.5474,
+      "gnn_score": 0.2757,
+      "final_score": 0.2757,
+      "rank": 3,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0002",
+      "document_id": "doc_73b725dbff8e",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "page_end": 1,
+      "section": "AlphaFold",
+      "url": null,
+      "text": "AlphaFold\n\nAt the CASP14 protein structure prediction assessment in 2020, AlphaFold 2 reached an accuracy that was competitive with experimental methods. John Jumper led the team that developed AlphaFold.\n\nIn 2021 DeepMind and EMBL's European Bioinformatics Institute released the AlphaFold Protein Structure Database, which made the predicted structures freely available to scientists.",
+      "char_start": 739,
+      "char_end": 1125,
+      "semantic_score": 0.1994,
+      "bm25_raw": 0.0,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.1396,
+      "graph_score": 0.309,
+      "gnn_score": 0.2092,
+      "final_score": 0.2092,
+      "rank": 4,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0000",
+      "document_id": "doc_73b725dbff8e",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "page_end": 1,
+      "section": "Founding / Acquisition by Google",
+      "url": null,
+      "text": "DeepMind: From a London Start-up to Google DeepMind\n\nFounding\n\nDeepMind Technologies was founded in London in 2010 by Demis Hassabis, Shane Legg and Mustafa Suleyman. The company set out to build general-purpose learning algorithms.\n\nDemis Hassabis, a former child chess prodigy, had earlier co-founded the video game developer Elixir Studios and completed a PhD in cognitive neuroscience at University College London.\n\nAcquisition by Google\n\nIn January 2014 Google acquired DeepMind. The purchase price was reported to be around 400 million pounds.",
+      "char_start": 0,
+      "char_end": 549,
+      "semantic_score": 0.1169,
+      "bm25_raw": 1.1062,
+      "bm25_score": 0.1306,
+      "hybrid_score": 0.121,
+      "graph_score": 0.3724,
+      "gnn_score": 0.1939,
+      "final_score": 0.1939,
+      "rank": 5,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0003",
+      "document_id": "doc_73b725dbff8e",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "page_end": 1,
+      "section": "Google DeepMind",
+      "url": null,
+      "text": "Google DeepMind\n\nIn April 2023, DeepMind merged with Google Brain, the deep learning team of Google Research, to form Google DeepMind. Demis Hassabis became the chief executive of the combined organisation.",
+      "char_start": 1127,
+      "char_end": 1333,
+      "semantic_score": 0.152,
+      "bm25_raw": 0.0,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.1064,
+      "graph_score": 0.2772,
+      "gnn_score": 0.1884,
+      "final_score": 0.1884,
+      "rank": 6,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_e3cbb8683a9f:c0000",
+      "document_id": "doc_e3cbb8683a9f",
+      "document_name": "openai_and_transformers.txt",
+      "page_number": 1,
+      "page_end": 1,
+      "section": null,
+      "url": null,
+      "text": "OpenAI and the Transformer Architecture\n\nOpenAI was founded in December 2015 in San Francisco as a non-profit artificial intelligence research organisation. Its founders included Sam Altman, Elon Musk, Greg Brockman, Ilya Sutskever and Wojciech Zaremba, among others. Ilya Sutskever became the organisation's chief scientist.\n\nIn June 2017, eight researchers at Google published the paper \"Attention Is All You Need\", which introduced the Transformer, a neural network architecture based entirely on attention mechanisms. The paper was presented at the NeurIPS conference in December 2017.\n\nOpenAI described its first Generative Pre-trained Transformer (GPT) model in 2018. ChatGPT, a conversational assistant built on later GPT models, was released to the public on 30 November 2022.\n\nIn May 2024 Ilya Sutskever announced that he was leaving OpenAI. He later co-founded the company Safe Superintelligence Inc.",
+      "char_start": 0,
+      "char_end": 910,
+      "semantic_score": 0.1731,
+      "bm25_raw": 0.9092,
+      "bm25_score": 0.1073,
+      "hybrid_score": 0.1533,
+      "graph_score": 0.1302,
+      "gnn_score": 0.0417,
+      "final_score": 0.0417,
+      "rank": 7,
+      "origin": "retrieval",
+      "hop": 1
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0001",
+      "document_id": "doc_73b725dbff8e",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "page_end": 1,
+      "section": "AlphaGo",
+      "url": null,
+      "text": "AlphaGo\n\nIn March 2016, DeepMind's program AlphaGo defeated Lee Sedol, one of the strongest Go players in the world, by four games to one in a five-game match held in Seoul, South Korea.",
+      "char_start": 551,
+      "char_end": 737,
+      "semantic_score": 0.1064,
+      "bm25_raw": 0.0,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.0745,
+      "graph_score": 0.0597,
+      "gnn_score": 0.0326,
+      "final_score": 0.0326,
+      "rank": 8,
+      "origin": "retrieval",
+      "hop": 1
+    }
+  ],
+  "strategy_rankings": {
+    "faiss": [
+      "doc_9345fa0a65a2:c0000",
+      "doc_b0de41524a83:c0000",
+      "doc_6ee53fe19343:c0000",
+      "doc_73b725dbff8e:c0002",
+      "doc_e3cbb8683a9f:c0000",
+      "doc_73b725dbff8e:c0003",
+      "doc_73b725dbff8e:c0000",
+      "doc_73b725dbff8e:c0001"
+    ],
+    "bm25": [
+      "doc_9345fa0a65a2:c0000",
+      "doc_6ee53fe19343:c0000",
+      "doc_b0de41524a83:c0000",
+      "doc_73b725dbff8e:c0000",
+      "doc_e3cbb8683a9f:c0000"
+    ],
+    "hybrid": [
+      "doc_9345fa0a65a2:c0000",
+      "doc_b0de41524a83:c0000",
+      "doc_6ee53fe19343:c0000",
+      "doc_e3cbb8683a9f:c0000",
+      "doc_73b725dbff8e:c0002",
+      "doc_73b725dbff8e:c0000",
+      "doc_73b725dbff8e:c0003",
+      "doc_73b725dbff8e:c0001"
+    ],
+    "graph": [
+      "doc_9345fa0a65a2:c0000",
+      "doc_6ee53fe19343:c0000",
+      "doc_b0de41524a83:c0000",
+      "doc_73b725dbff8e:c0000",
+      "doc_73b725dbff8e:c0002",
+      "doc_73b725dbff8e:c0003",
+      "doc_e3cbb8683a9f:c0000",
+      "doc_73b725dbff8e:c0001"
+    ],
+    "gnn": [
+      "doc_9345fa0a65a2:c0000",
+      "doc_b0de41524a83:c0000",
+      "doc_6ee53fe19343:c0000",
+      "doc_73b725dbff8e:c0002",
+      "doc_73b725dbff8e:c0000",
+      "doc_73b725dbff8e:c0003",
+      "doc_e3cbb8683a9f:c0000",
+      "doc_73b725dbff8e:c0001"
+    ]
+  },
+  "score_table": [
+    {
+      "chunk_id": "doc_9345fa0a65a2:c0000",
+      "document_name": "nobel_prizes_2024.pdf",
+      "page_number": 1,
+      "section": null,
+      "preview": "The Nobel Prize in Physics 2024\n\nOn 8 October 2024, the Royal Swedish Academy of Sciences announced that the Nobel Prize in Physics 2024 was awarded jointly to John J. Hopfield of Princeton University and Geoffrey E. Hin",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.573,
+      "bm25_score": 1.0,
+      "hybrid_score": 0.7011,
+      "graph_score": 0.8506,
+      "gnn_score": 0.9995,
+      "ranks": {
+        "faiss": 1,
+        "bm25": 1,
+        "hybrid": 1,
+        "graph": 1,
+        "gnn": 1
+      }
+    },
+    {
+      "chunk_id": "doc_b0de41524a83:c0000",
+      "document_name": "turing_award_2018.pdf",
+      "page_number": 1,
+      "section": null,
+      "preview": "The 2018 ACM A.M. Turing Award\n\nOn 27 March 2019 the Association for Computing Machinery (ACM) announced that Yoshua Bengio, Geoffrey Hinton and Yann LeCun were the recipients of the 2018 ACM A.M. Turing Award for concep",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.3323,
+      "bm25_score": 0.148,
+      "hybrid_score": 0.277,
+      "graph_score": 0.4547,
+      "gnn_score": 0.3739,
+      "ranks": {
+        "faiss": 2,
+        "bm25": 3,
+        "hybrid": 2,
+        "graph": 3,
+        "gnn": 2
+      }
+    },
+    {
+      "chunk_id": "doc_6ee53fe19343:c0000",
+      "document_name": "geoffrey_hinton_profile.txt",
+      "page_number": 1,
+      "section": null,
+      "preview": "Geoffrey Hinton - Research Profile\n\nGeoffrey Everest Hinton is a British-Canadian computer scientist and cognitive psychologist who is best known for his work on artificial neural networks. Hinton was born on 6 December ",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.2952,
+      "bm25_score": 0.2066,
+      "hybrid_score": 0.2686,
+      "graph_score": 0.5474,
+      "gnn_score": 0.2757,
+      "ranks": {
+        "faiss": 3,
+        "bm25": 2,
+        "hybrid": 3,
+        "graph": 2,
+        "gnn": 3
+      }
+    },
+    {
+      "chunk_id": "doc_e3cbb8683a9f:c0000",
+      "document_name": "openai_and_transformers.txt",
+      "page_number": 1,
+      "section": null,
+      "preview": "OpenAI and the Transformer Architecture\n\nOpenAI was founded in December 2015 in San Francisco as a non-profit artificial intelligence research organisation. Its founders included Sam Altman, Elon Musk, Greg Brockman, Ily",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.1731,
+      "bm25_score": 0.1073,
+      "hybrid_score": 0.1533,
+      "graph_score": 0.1302,
+      "gnn_score": 0.0417,
+      "ranks": {
+        "faiss": 5,
+        "bm25": 5,
+        "hybrid": 4,
+        "graph": 7,
+        "gnn": 7
+      }
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0002",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "AlphaFold",
+      "preview": "AlphaFold\n\nAt the CASP14 protein structure prediction assessment in 2020, AlphaFold 2 reached an accuracy that was competitive with experimental methods. John Jumper led the team that developed AlphaFold.\n\nIn 2021 DeepMi",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.1994,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.1396,
+      "graph_score": 0.309,
+      "gnn_score": 0.2092,
+      "ranks": {
+        "faiss": 4,
+        "hybrid": 5,
+        "graph": 5,
+        "gnn": 4
+      }
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0000",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "Founding / Acquisition by Google",
+      "preview": "DeepMind: From a London Start-up to Google DeepMind\n\nFounding\n\nDeepMind Technologies was founded in London in 2010 by Demis Hassabis, Shane Legg and Mustafa Suleyman. The company set out to build general-purpose learning",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.1169,
+      "bm25_score": 0.1306,
+      "hybrid_score": 0.121,
+      "graph_score": 0.3724,
+      "gnn_score": 0.1939,
+      "ranks": {
+        "faiss": 7,
+        "bm25": 4,
+        "hybrid": 6,
+        "graph": 4,
+        "gnn": 5
+      }
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0003",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "Google DeepMind",
+      "preview": "Google DeepMind\n\nIn April 2023, DeepMind merged with Google Brain, the deep learning team of Google Research, to form Google DeepMind. Demis Hassabis became the chief executive of the combined organisation.",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.152,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.1064,
+      "graph_score": 0.2772,
+      "gnn_score": 0.1884,
+      "ranks": {
+        "faiss": 6,
+        "hybrid": 7,
+        "graph": 6,
+        "gnn": 6
+      }
+    },
+    {
+      "chunk_id": "doc_73b725dbff8e:c0001",
+      "document_name": "deepmind_history.docx",
+      "page_number": 1,
+      "section": "AlphaGo",
+      "preview": "AlphaGo\n\nIn March 2016, DeepMind's program AlphaGo defeated Lee Sedol, one of the strongest Go players in the world, by four games to one in a five-game match held in Seoul, South Korea.",
+      "origin": "retrieval",
+      "hop": 1,
+      "semantic_score": 0.1064,
+      "bm25_score": 0.0,
+      "hybrid_score": 0.0745,
+      "graph_score": 0.0597,
+      "gnn_score": 0.0326,
+      "ranks": {
+        "faiss": 8,
+        "hybrid": 8,
+        "graph": 8,
+        "gnn": 8
+      }
+    }
+  ],
+  "confidence": 0.6685,
+  "confidence_components": {
+    "retrieval": 0.7884,
+    "coverage": 0.7778,
+    "chain": 0.7126,
+    "answer_support": 0.4355
+  },
+  "evidence_coverage": {
+    "question_terms": [
+      "university",
+      "2024",
+      "nobel",
+      "prize",
+      "physic",
+      "laureate",
+      "toronto",
+      "receive",
+      "phd"
+    ],
+    "covered": [
+      "university",
+      "2024",
+      "nobel",
+      "prize",
+      "physic",
+      "toronto",
+      "phd"
+    ],
+    "missing": [
+      "laureate",
+      "receive"
+    ],
+    "ratio": 0.7778
+  },
+  "insufficient_evidence": false,
+  "insufficient_reasons": [],
+  "question_entities": [
+    {
+      "text": "2024 Nobel Prize",
+      "label": "EVENT",
+      "matches": [
+        {
+          "entity_id": "ent:2024",
+          "name": "2024",
+          "score": 0.675
+        }
+      ]
+    },
+    {
+      "text": "Physics",
+      "label": "ORG",
+      "matches": [
+        {
+          "entity_id": "ent:nobel_prize_in_physics_2024",
+          "name": "Nobel Prize in Physics 2024",
+          "score": 0.678
+        }
+      ]
+    },
+    {
+      "text": "University of Toronto",
+      "label": "ORG",
+      "matches": [
+        {
+          "entity_id": "ent:university_of_toronto",
+          "name": "University of Toronto",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "text": "PhD",
+      "label": "WORK_OF_ART",
+      "matches": [
+        {
+          "entity_id": "ent:phd",
+          "name": "PhD",
+          "score": 1.0
+        }
+      ]
+    },
+    {
+      "text": "Nobel Prize",
+      "label": "PROPN",
+      "matches": [
+        {
+          "entity_id": "ent:nobel_prize_in_chemistry",
+          "name": "Nobel Prize in Chemistry",
+          "score": 0.737
+        },
+        {
+          "entity_id": "ent:nobel_prize_in_physics_2024",
+          "name": "Nobel Prize in Physics 2024",
+          "score": 0.722
+        }
+      ]
+    },
+    {
+      "text": "University",
+      "label": "PROPN",
+      "matches": [
+        {
+          "entity_id": "ent:new_york_university",
+          "name": "New York University",
+          "score": 0.758
+        },
+        {
+          "entity_id": "ent:princeton_university",
+          "name": "Princeton University",
+          "score": 0.75
+        },
+        {
+          "entity_id": "ent:university_of_toronto",
+          "name": "University of Toronto",
+          "score": 0.743
+        }
+      ]
+    },
+    {
+      "text": "Toronto",
+      "label": "PROPN",
+      "matches": [
+        {
+          "entity_id": "ent:university_of_toronto",
+          "name": "University of Toronto",
+          "score": 0.7
+        }
+      ]
+    },
+    {
+      "text": "2024",
+      "label": "DATE",
+      "matches": [
+        {
+          "entity_id": "ent:2024",
+          "name": "2024",
+          "score": 1.0
+        }
+      ]
+    }
+  ],
+  "generator_backend": "hf_generator",
+  "generator_warnings": [
+    "The cautious prompt abstained; a second reading-comprehension pass produced this answer, which was accepted only after grounding."
+  ],
+  "removed_citations": [],
+  "gnn_used": true,
+  "notes": [],
+  "graph_stats": {
+    "nodes": 58,
+    "edges": 201,
+    "node_types": {
+      "question": 1,
+      "document": 5,
+      "passage": 8,
+      "entity": 44
+    },
+    "edge_types": {
+      "CONTAINS": 8,
+      "MENTIONS": 68,
+      "RELATED_TO": 32,
+      "CO_OCCURS_WITH": 69,
+      "SUPPORTS": 8,
+      "CONNECTS_TO": 16
+    }
+  },
+  "expansion_log": [],
+  "timings_ms": {
+    "query_embedding": 0.35,
+    "semantic_retrieval": 2.47,
+    "bm25_retrieval": 0.05,
+    "hybrid_retrieval": 4.21,
+    "question_analysis": 12.71,
+    "graph_construction": 2.03,
+    "graph_traversal": 4.2,
+    "graph_ranking": 4.99,
+    "gnn_inference": 12.71,
+    "answer_generation": 1918.03,
+    "citation_validation": 10.68
+  },
+  "total_ms": 1972.4,
+  "top_k": 8,
+  "max_hops": 3,
+  "corpus": {
+    "name": "uploads",
+    "documents": 5,
+    "chunks": 8
+  },
+  "open_domain": null
+}

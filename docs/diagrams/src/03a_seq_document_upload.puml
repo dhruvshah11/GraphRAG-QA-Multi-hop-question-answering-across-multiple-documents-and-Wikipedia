@@ -1,0 +1,46 @@
+@startuml seq_document_upload
+!include _theme.iuml
+title A. Document upload and processing
+autonumber
+actor User
+participant "React UI\n(Documents page)" as UI
+participant "FastAPI\nroutes_documents" as API
+participant APIController as CTL
+participant DocumentProcessor as DP
+participant JobManager as JM
+participant IngestionService as IS
+participant Chunker
+participant CorpusManager as CM
+participant EmbeddingGenerator as EMB
+participant EntityExtractor as NER
+database "SQLite" as DB
+database "FAISS index" as FAISS
+
+User -> UI : drag & drop files
+UI -> API : POST /api/documents/upload (multipart)
+API -> CTL : upload(files)
+CTL -> DP : register_upload(name, bytes)
+DP -> DP : validate type + size,\nsha256 checksum, safe filename
+alt duplicate checksum
+  DP --> CTL : existing document (duplicate)
+else new file
+  DP -> DB : INSERT documents (status=uploaded)
+  CTL -> JM : submit(process_document, pool=ingest)
+end
+API --> UI : {document, job_id}
+UI -> API : GET /api/jobs/{job_id} (polling)
+JM -> IS : process_document(doc_id)
+IS -> DP : extract(doc)  (PyMuPDF / python-docx / txt)
+IS -> DB : save pages + sections
+IS -> Chunker : chunk_document(doc)
+IS -> CM : index_document(doc, chunks)
+CM -> EMB : encode_passages(chunks)
+CM -> NER : extract_chunks(chunks)  (entities + relations)
+CM -> DB : replace chunks (vector ids), mentions, relations
+CM -> FAISS : remove old ids, add vectors, save
+IS -> DB : status = processed
+IS -> CM : refresh()  (registry, BM25, evidence graph)
+CM -> DB : replace entities
+IS -> DB : log stage timings (metrics_log)
+API --> UI : job completed
+@enduml

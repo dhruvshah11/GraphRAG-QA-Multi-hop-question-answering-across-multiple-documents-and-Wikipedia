@@ -1,0 +1,15 @@
+@startuml dfd_level0
+!pragma layout smetana
+!include _theme.iuml
+title Data Flow Diagram - Level 0 (context)
+left to right direction
+rectangle "User" as U #EAF2FC
+rectangle "Wikipedia" as W #EAF2FC
+usecase "0\nGraphRAG-QA\nSystem" as S
+rectangle "Model files" as M #EAF6F1
+U --> S : documents, questions,\nsettings, evaluation requests
+S --> U : answers, citations, evidence graphs,\nanalytics, evaluation reports
+S --> W : search queries, article titles
+W --> S : article text (sections)
+M --> S : pretrained weights, GNN checkpoint
+@enduml

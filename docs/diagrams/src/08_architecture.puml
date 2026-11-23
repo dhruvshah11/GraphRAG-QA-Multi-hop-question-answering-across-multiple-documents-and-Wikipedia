@@ -1,0 +1,54 @@
+@startuml architecture
+!pragma layout smetana
+!include _theme.iuml
+title GraphRAG-QA - System Architecture
+top to bottom direction
+rectangle "Presentation layer - React SPA" #EAF2FC {
+  rectangle "Dashboard" as F1
+  rectangle "Document\nWorkspace" as F2
+  rectangle "Question\nAnswering" as F3
+  rectangle "Graph Explorer\n(React Flow)" as F4
+  rectangle "Analytics\n(Recharts)" as F5
+  rectangle "Evaluation Lab" as F6
+  rectangle "Settings" as F7
+}
+rectangle "API layer - FastAPI (REST/JSON, Pydantic, CORS, background jobs)" as API #F4F7FB
+rectangle "Processing layer" #FBFBFA {
+  rectangle "Ingestion\nPDF/TXT/DOCX\nnormalization" as L1
+  rectangle "Chunking\n400 tok / 80 overlap" as L2
+  rectangle "NER + relations\nspaCy" as L3
+  rectangle "Embeddings\nMiniLM-L6-v2" as L4
+  rectangle "Hybrid retrieval\nFAISS + BM25\nalpha = 0.7" as L5
+  rectangle "Evidence graph\nNetworkX\n4 node / 6 edge types" as L6
+  rectangle "Multi-hop chains\nsimple paths <= 3 hops" as L7
+  rectangle "Reranking\nPPR heuristic | GAT GNN" as L8
+  rectangle "Grounded generation\nFlan-T5 / reader /\nextractive" as L9
+  rectangle "Citations +\nconfidence +\ninsufficient evidence" as L10
+}
+rectangle "Storage layer" #EAF6F1 {
+  database "SQLite" as S1
+  database "FAISS index" as S2
+  database "Graph JSON/GraphML" as S3
+  database "Models + GNN checkpoint" as S4
+}
+cloud "Wikipedia API" as W
+F1 -[hidden]-> API
+F3 --> API
+API --> L1
+L1 --> L2
+L2 --> L3
+L2 --> L4
+L4 --> L5
+L3 --> L6
+L5 --> L6
+L6 --> L7
+L7 --> L8
+L8 --> L9
+L9 --> L10
+L10 --> API
+L5 --> S2
+L6 --> S3
+API --> S1
+L8 --> S4
+L5 --> W
+@enduml

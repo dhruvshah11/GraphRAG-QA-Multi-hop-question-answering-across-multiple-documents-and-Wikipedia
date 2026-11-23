@@ -1,0 +1,30 @@
+@startuml seq_graph_construction
+!include _theme.iuml
+title D. Evidence graph construction
+autonumber
+participant CorpusManager as CM
+participant EntityRegistry as REG
+participant GraphBuilder as GB
+participant EvidenceGraph as EG
+participant QueryScores as QS
+database "data/graphs" as FS
+
+== Corpus graph (after every document change) ==
+CM -> REG : build(mentions)\nexact match, initials, surname, acronym rules
+CM -> GB : build_corpus_graph(chunks, documents, registry, mentions, relations)
+GB -> EG : document nodes, passage nodes, CONTAINS
+GB -> EG : entity nodes, MENTIONS (passage -> entity)
+GB -> EG : CO_OCCURS_WITH (same sentence)
+GB -> EG : RELATED_TO (verb between two entities, sentence kept)
+GB -> EG : CONNECTS_TO (shared non-date entity with df <= limit;\nadjacent chunks of one document)
+CM -> FS : corpus_graph.json (+fingerprint), corpus_graph.graphml
+
+== Question subgraph (per question) ==
+GB -> QS : hybrid scores of all passages
+GB -> GB : hop 1 = hybrid top-k seeds\n+ passages mentioning question entities
+loop hop = 2 .. max_hops
+  GB -> GB : expand frontier via bridge entities / adjacency,\nkeep best per_hop by hybrid + specificity
+end
+GB -> EG : question node, SUPPORTS (seed -> question),\nMENTIONS (question -> entity), induced edges
+GB -> GB : BFS hop distance from question
+@enduml

@@ -1,0 +1,165 @@
+{
+  "config": {
+    "epochs": 40,
+    "lr": 0.001,
+    "weight_decay": 0.0001,
+    "batch_size": 16,
+    "neg_ratio": 3,
+    "hidden_dim": 64,
+    "heads": 4,
+    "dropout": 0.2,
+    "patience": 8,
+    "seed": 42,
+    "k": 2
+  },
+  "meta": {
+    "training_source": "hotpotqa",
+    "dataset_label": "HotpotQA distractor setting - real multi-hop questions (train/val sampled from the official train split, CC BY-SA 4.0)",
+    "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+    "feature_spec_version": "gat-features-v2",
+    "scalar_features": [
+      "cosine_to_question",
+      "bm25",
+      "hybrid",
+      "is_seed",
+      "hop_distance",
+      "is_question_entity",
+      "log_degree",
+      "specificity",
+      "graph_heuristic"
+    ],
+    "source_info": {}
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "train_loss": 0.5799429756565188,
+      "val_precision_at_k": 0.625,
+      "val_recall_at_k": 0.6325,
+      "val_mrr": 0.8807916666666666,
+      "val_all_gold_in_top_k": 0.335,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.4820372046530247
+    },
+    {
+      "epoch": 2,
+      "train_loss": 0.4720669222435416,
+      "val_precision_at_k": 0.6975,
+      "val_recall_at_k": 0.705,
+      "val_mrr": 0.9221309523809523,
+      "val_all_gold_in_top_k": 0.44,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.42485208332538604
+    },
+    {
+      "epoch": 3,
+      "train_loss": 0.41793765586652043,
+      "val_precision_at_k": 0.6925,
+      "val_recall_at_k": 0.7,
+      "val_mrr": 0.9213333333333332,
+      "val_all_gold_in_top_k": 0.44,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.4051293806359172
+    },
+    {
+      "epoch": 4,
+      "train_loss": 0.4038114031169769,
+      "val_precision_at_k": 0.6925,
+      "val_recall_at_k": 0.7,
+      "val_mrr": 0.9163333333333332,
+      "val_all_gold_in_top_k": 0.44,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.4042143801227212
+    },
+    {
+      "epoch": 5,
+      "train_loss": 0.39625821351921814,
+      "val_precision_at_k": 0.6975,
+      "val_recall_at_k": 0.705,
+      "val_mrr": 0.9163333333333332,
+      "val_all_gold_in_top_k": 0.45,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.39168526802212
+    },
+    {
+      "epoch": 6,
+      "train_loss": 0.3911143040873334,
+      "val_precision_at_k": 0.6975,
+      "val_recall_at_k": 0.705,
+      "val_mrr": 0.9161666666666668,
+      "val_all_gold_in_top_k": 0.45,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.3825956916064024
+    },
+    {
+      "epoch": 7,
+      "train_loss": 0.3894475664280547,
+      "val_precision_at_k": 0.6975,
+      "val_recall_at_k": 0.705,
+      "val_mrr": 0.9111666666666668,
+      "val_all_gold_in_top_k": 0.45,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.38068498119711874
+    },
+    {
+      "epoch": 8,
+      "train_loss": 0.3790106696510182,
+      "val_precision_at_k": 0.705,
+      "val_recall_at_k": 0.7125,
+      "val_mrr": 0.9168333333333334,
+      "val_all_gold_in_top_k": 0.46,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.3673167670704424
+    },
+    {
+      "epoch": 9,
+      "train_loss": 0.37592945577211506,
+      "val_precision_at_k": 0.71,
+      "val_recall_at_k": 0.7175,
+      "val_mrr": 0.9146666666666667,
+      "val_all_gold_in_top_k": 0.47,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.36496183756738904
+    },
+    {
+      "epoch": 10,
+      "train_loss": 0.3702269696806663,
+      "val_precision_at_k": 0.7125,
+      "val_recall_at_k": 0.72,
+      "val_mrr": 0.9155,
+      "val_all_gold_in_top_k": 0.485,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.35813636481761935
+    }
+  ],
+  "summary": {
+    "best_epoch": 2,
+    "epochs_run": 10,
+    "train_seconds": 14.37,
+    "best_val": {
+      "epoch": 2,
+      "train_loss": 0.4720669222435416,
+      "val_precision_at_k": 0.6975,
+      "val_recall_at_k": 0.705,
+      "val_mrr": 0.9221309523809523,
+      "val_all_gold_in_top_k": 0.44,
+      "val_graphs_with_gold": 200,
+      "val_loss": 0.42485208332538604
+    },
+    "baseline_val_hybrid": {
+      "precision_at_k": 0.7,
+      "recall_at_k": 0.7075,
+      "mrr": 0.9259166666666667,
+      "all_gold_in_top_k": 0.455,
+      "graphs_with_gold": 200
+    },
+    "baseline_val_graph_heuristic": {
+      "precision_at_k": 0.7225,
+      "recall_at_k": 0.73,
+      "mrr": 0.9344642857142859,
+      "all_gold_in_top_k": 0.495,
+      "graphs_with_gold": 200
+    },
+    "num_parameters": 43275
+  }
+}

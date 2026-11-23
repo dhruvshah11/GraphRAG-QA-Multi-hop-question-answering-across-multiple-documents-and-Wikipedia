@@ -1,0 +1,38 @@
+@startuml dfd_level1
+!pragma layout smetana
+!include _theme.iuml
+title Data Flow Diagram - Level 1
+left to right direction
+rectangle "User" as U #EAF2FC
+rectangle "Wikipedia" as W #EAF2FC
+usecase "1.0\nIngest &\nnormalize" as P1
+usecase "2.0\nChunk, NER,\nembed" as P2
+usecase "3.0\nIndex\n(FAISS, BM25,\ngraph)" as P3
+usecase "4.0\nRetrieve &\nreason over\ngraph" as P4
+usecase "5.0\nRerank\n(heuristic / GNN)" as P5
+usecase "6.0\nGenerate answer\n& citations" as P6
+usecase "7.0\nEvaluate &\nbenchmark" as P7
+database "D1 Documents,\npages, chunks" as D1
+database "D2 Entities,\nmentions, relations" as D2
+database "D3 FAISS index" as D3
+database "D4 Evidence graph" as D4
+database "D5 Queries, answers,\ncitations, metrics" as D5
+U --> P1 : PDF / TXT / DOCX
+P1 --> D1 : pages, sections
+D1 --> P2 : normalized text
+P2 --> D1 : chunks
+P2 --> D2 : mentions, relations
+P2 --> P3 : passage vectors
+P3 --> D3 : vectors
+P3 --> D4 : nodes, edges
+U --> P4 : question
+W --> P4 : articles (open-domain)
+D3 --> P4 : nearest passages
+D4 --> P4 : graph neighbourhood
+P4 --> P5 : subgraph, chains, scores
+P5 --> P6 : ranked evidence
+P6 --> U : answer, reasoning, citations
+P6 --> D5 : stored results
+D5 --> P7 : runs
+P7 --> U : metrics, CSV, charts
+@enduml

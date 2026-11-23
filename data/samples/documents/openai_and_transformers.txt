@@ -1,0 +1,9 @@
+OpenAI and the Transformer Architecture
+
+OpenAI was founded in December 2015 in San Francisco as a non-profit artificial intelligence research organisation. Its founders included Sam Altman, Elon Musk, Greg Brockman, Ilya Sutskever and Wojciech Zaremba, among others. Ilya Sutskever became the organisation's chief scientist.
+
+In June 2017, eight researchers at Google published the paper "Attention Is All You Need", which introduced the Transformer, a neural network architecture based entirely on attention mechanisms. The paper was presented at the NeurIPS conference in December 2017.
+
+OpenAI described its first Generative Pre-trained Transformer (GPT) model in 2018. ChatGPT, a conversational assistant built on later GPT models, was released to the public on 30 November 2022.
+
+In May 2024 Ilya Sutskever announced that he was leaving OpenAI. He later co-founded the company Safe Superintelligence Inc.

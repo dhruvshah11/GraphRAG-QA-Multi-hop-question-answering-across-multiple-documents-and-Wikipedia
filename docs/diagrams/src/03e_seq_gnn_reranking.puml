@@ -1,0 +1,40 @@
+@startuml seq_gnn_reranking
+!include _theme.iuml
+title E. GNN-based reranking (training and inference)
+autonumber
+participant "train_gnn.py /\nPOST /api/gnn/train" as T
+participant "dataset.py\n(HotpotQA sample)" as DS
+participant GraphReasoner as GR
+participant FeatureBuilder as FB
+participant GNNTrainer as TR
+participant GATReranker as M
+database "models/gnn" as CK
+participant GNNRanker as RK
+
+== Training ==
+T -> DS : hotpotqa_graphs(train / val)
+loop each question (10 paragraphs, 2 gold)
+  DS -> GR : analyze(question) without GNN
+  DS -> FB : build(subgraph, gold) -> PyG Data\n(x = e(v)*q || 8 scalars, edge_attr = type one-hot)
+end
+T -> TR : train(train_set, val_set)
+loop epoch (early stopping, patience 8)
+  TR -> TR : sample negatives (half hard, half random)
+  TR -> M : forward(batch) -> logits
+  TR -> TR : BCE loss on sampled passages, Adam step
+  TR -> TR : validation MRR / R@2 / loss
+  opt best validation MRR
+    TR -> CK : save state_dict + config + metadata
+  end
+end
+TR -> CK : training_history.json
+
+== Inference (per question) ==
+GR -> RK : is_available?
+RK -> CK : load checkpoint (feature spec + embedding model must match)
+GR -> RK : score(question subgraph)
+RK -> FB : build(subgraph)
+RK -> M : forward -> sigmoid
+RK --> GR : P(evidence) per passage
+GR -> GR : GNN ranking + chains rescored with GNN relevance
+@enduml

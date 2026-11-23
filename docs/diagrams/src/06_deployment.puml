@@ -1,0 +1,40 @@
+@startuml deployment
+!pragma layout smetana
+!include _theme.iuml
+title Deployment diagram (single laptop, CPU only)
+node "User machine (Windows / Linux / macOS)" {
+  node "Web browser" {
+    artifact "React SPA\n(served by Vite :5173)" as SPA
+  }
+  node "Node.js 20+ (development server)" {
+    artifact "Vite dev server\nproxy /api -> :8000" as Vite
+  }
+  node "Python 3.11+ virtual environment" {
+    node "Uvicorn :8000" {
+      artifact "FastAPI application\n(app.main:app)" as App
+    }
+    artifact "NLP models (CPU)\nall-MiniLM-L6-v2\nen_core_web_sm\ntinyroberta-squad2\nflan-t5-base\nGAT checkpoint" as Models
+  }
+  folder "data/" {
+    database "graphrag_qa.sqlite3" as DB
+    artifact "indexes/faiss.index" as IDX
+    artifact "graphs/*.json, *.graphml" as GR
+    artifact "uploads/" as UP
+  }
+  folder "models/" as MD
+}
+cloud "Internet" {
+  node "en.wikipedia.org\n/w/api.php" as WIKI
+  node "Optional: Ollama (local)\nor Claude API" as LLM
+}
+SPA --> Vite : HTTP
+Vite --> App : HTTP /api
+App --> Models : loads once
+Models --> MD
+App --> DB
+App --> IDX
+App --> GR
+App --> UP
+App --> WIKI : HTTPS (open-domain mode)
+App ..> LLM : optional
+@enduml

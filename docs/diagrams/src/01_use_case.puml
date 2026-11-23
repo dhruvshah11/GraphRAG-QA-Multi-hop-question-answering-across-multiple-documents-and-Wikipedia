@@ -1,0 +1,44 @@
+@startuml use_case
+!pragma layout smetana
+!include _theme.iuml
+title GraphRAG-QA - Use Case Diagram
+left to right direction
+actor "User\n(student / analyst)" as User
+actor "NLP Processing Engine" as Engine
+actor "Wikipedia API\n(MediaWiki)" as Wiki
+actor "Model Backend\n(local HF models;\noptional Ollama / Claude API)" as Model
+rectangle "GraphRAG-QA System" {
+  usecase "Upload documents\n(PDF, TXT, DOCX)" as UC1
+  usecase "Process documents" as UC2
+  usecase "Ask question\n(multi-document / open-domain)" as UC3
+  usecase "Retrieve evidence\n(FAISS + BM25 hybrid)" as UC4
+  usecase "Construct evidence graph" as UC5
+  usecase "Rank evidence\n(graph heuristic / GNN)" as UC6
+  usecase "Generate grounded answer" as UC7
+  usecase "View citations" as UC8
+  usecase "Explore knowledge graph" as UC9
+  usecase "Evaluate performance" as UC10
+  usecase "Train GNN reranker" as UC11
+  usecase "Configure settings" as UC12
+}
+User --> UC1
+User --> UC3
+User --> UC8
+User --> UC9
+User --> UC10
+User --> UC11
+User --> UC12
+UC1 ..> UC2 : <<include>>
+UC3 ..> UC4 : <<include>>
+UC3 ..> UC5 : <<include>>
+UC3 ..> UC6 : <<include>>
+UC3 ..> UC7 : <<include>>
+UC7 ..> UC8 : <<include>>
+UC10 ..> UC3 : <<include>>
+UC2 -- Engine
+UC4 -- Engine
+UC5 -- Engine
+UC6 -- Engine
+UC4 -- Wiki
+UC7 -- Model
+@enduml

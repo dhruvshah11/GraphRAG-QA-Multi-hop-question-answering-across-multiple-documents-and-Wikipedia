@@ -1,0 +1,2 @@
+# Convenience file: installs everything needed to run and test the backend.
+-r backend/requirements.txt

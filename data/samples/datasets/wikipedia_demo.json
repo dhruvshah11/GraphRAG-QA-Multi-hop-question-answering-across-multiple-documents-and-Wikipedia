@@ -1,0 +1,47 @@
+{
+  "name": "GraphRAG-QA open-domain (Wikipedia) demo questions",
+  "version": "1.0",
+  "description": "Multi-hop questions for Mode B. The system retrieves live Wikipedia articles (cached after the first run), so results depend on the current article text. Expected answers were written by hand from well-known facts; gold_articles name the Wikipedia articles that contain the supporting facts.",
+  "questions": [
+    {
+      "id": "wiki-01",
+      "type": "bridge",
+      "question": "In which city was the co-founder and CEO of DeepMind born?",
+      "answer": "London",
+      "answer_aliases": ["London, England"],
+      "gold_articles": ["Google DeepMind", "Demis Hassabis"]
+    },
+    {
+      "id": "wiki-02",
+      "type": "bridge",
+      "question": "Which university did the director of the film Inception study at?",
+      "answer": "University College London",
+      "answer_aliases": ["UCL"],
+      "gold_articles": ["Inception", "Christopher Nolan"]
+    },
+    {
+      "id": "wiki-03",
+      "type": "bridge",
+      "question": "Which river flows through the city where the Brandenburg Gate is located?",
+      "answer": "Spree",
+      "answer_aliases": ["the Spree", "Spree River", "River Spree"],
+      "gold_articles": ["Brandenburg Gate", "Berlin"]
+    },
+    {
+      "id": "wiki-04",
+      "type": "bridge",
+      "question": "In which year was the university where Alan Turing earned his PhD founded?",
+      "answer": "1746",
+      "answer_aliases": [],
+      "gold_articles": ["Alan Turing", "Princeton University"]
+    },
+    {
+      "id": "wiki-05",
+      "type": "bridge",
+      "question": "Which country is the birthplace of the physicist who developed the theory of general relativity?",
+      "answer": "Germany",
+      "answer_aliases": ["German Empire", "Kingdom of Württemberg"],
+      "gold_articles": ["General relativity", "Albert Einstein"]
+    }
+  ]
+}

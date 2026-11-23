@@ -1,0 +1,49 @@
+@startuml seq_open_domain
+!include _theme.iuml
+title C. Open-domain Wikipedia retrieval (two-hop)
+autonumber
+actor User
+participant "FastAPI\n/api/qa/open-domain" as API
+participant QAPipeline as P
+participant OpenDomainRetriever as OD
+participant WikipediaClient as WC
+participant "Wikipedia\nMediaWiki API" as WIKI
+database "wiki_cache\n(SQLite)" as CACHE
+participant EntityExtractor as NER
+participant HybridRetriever as HR
+participant "build_ephemeral_corpus" as EC
+participant GraphReasoner as GR
+
+User -> API : POST {question, strategy}
+API -> P : ask(mode=open_domain)
+P -> OD : build_corpus(question)
+OD -> NER : question_entities(question)
+loop question + each entity
+  OD -> WC : search(query)
+  WC -> CACHE : cached?
+  alt cache miss
+    WC -> WIKI : action=query&list=search
+    WIKI --> WC : titles
+    WC -> CACHE : store
+  end
+end
+loop top articles (max 6)
+  OD -> WC : fetch_article(title)
+  WC -> WIKI : prop=extracts (plain text, sections)
+  WC -> CACHE : store sections
+end
+OD -> HR : rank hop-1 passages
+OD -> NER : entities of best passages
+OD -> OD : bridge entities = not in question,\nnot fetched yet
+loop up to 3 bridge entities
+  OD -> WC : search + fetch_article
+end
+OD -> EC : chunk, embed, NER, FAISS, BM25,\nentity registry, corpus graph
+EC --> OD : Corpus (in memory)
+OD --> P : corpus + retrieval log
+P -> GR : analyze(...)  (same path as multi-document)
+P --> API : answer with article + section citations
+alt Wikipedia unreachable / HTTP 403
+  WC --> API : WikipediaUnavailableError -> HTTP 503 with explanation
+end
+@enduml
