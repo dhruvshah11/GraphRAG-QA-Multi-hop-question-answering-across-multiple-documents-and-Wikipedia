@@ -57,6 +57,19 @@ MML2OMML = Path(r"C:\Program Files\Microsoft Office\root\Office16\MML2OMML.XSL")
 
 TITLE = ("GraphRAG-QA: Multi-Hop Question Answering Across Multiple Documents "
          "Using Evidence Graphs and Graph Neural Networks")
+
+# Submission details (title page, certificate, declaration, acknowledgement)
+AUTHORS = [("Dhruv Shah", "500118979"), ("Manasvi Saxena", "500119549")]
+AUTHORS_TEXT = " and ".join(f"{n} ({sap})" for n, sap in AUTHORS)
+GUIDE = "Dr. Sujoy Chatterjee"
+SCHOOL = "School of Computer Science"
+INSTITUTE = "UPES"
+CITY = "Dehradun, Uttarakhand, India"
+CITY_SHORT = "Dehradun"
+MONTH_YEAR = "November 2026"
+ACADEMIC_YEAR = "2026–27"
+GITHUB_URL = ("https://github.com/dhruvshah11/"
+              "GraphRAG-QA-Multi-hop-question-answering-across-multiple-documents-and-Wikipedia")
 SHORT_TITLE = "GraphRAG-QA: Multi-Hop QA with Evidence Graphs and GNNs"
 FONT = "Times New Roman"
 TEXT_WIDTH_IN = 6.27  # A4 (8.27 in) minus two 1-inch margins
@@ -797,20 +810,19 @@ def title_page(R: Report) -> None:
     line("in", 12, after=2)
     line("Computer Science and Engineering", 15, bold=True, after=26)
     line("Submitted by", 12, italic=True, after=4)
-    line("[Student Name]  ([Roll Number])", 13, bold=True, after=2)
-    line("[Student Name]  ([Roll Number])", 13, bold=True, after=2)
-    line("[Student Name]  ([Roll Number])", 13, bold=True, after=22)
+    for i, (name, sap) in enumerate(AUTHORS):
+        line(f"{name}  ({sap})", 13, bold=True, after=22 if i == len(AUTHORS) - 1 else 2)
     line("Under the guidance of", 12, italic=True, after=4)
-    line("[Guide Name]", 13, bold=True, after=2)
-    line("[Designation], [Department]", 12, after=30)
-    line("[Institute Logo]", 12, italic=True, after=30)
-    line("[Department]", 13, bold=True, after=2)
-    line("[Institute]", 14, bold=True, after=2)
-    line("[City] – [PIN Code]", 12, after=12)
-    line("[Month Year]", 13, bold=True, after=0)
+    line(GUIDE, 13, bold=True, after=2)
+    line(f"{SCHOOL}, {INSTITUTE}", 12, after=40)
+    line(SCHOOL, 13, bold=True, after=2)
+    line(INSTITUTE, 14, bold=True, after=2)
+    line(CITY, 12, after=12)
+    line(MONTH_YEAR, 13, bold=True, after=14)
+    line("Source code: " + GITHUB_URL, 10, italic=True, after=0)
 
 
-def signature_block(R: Report, left: list[str], right: list[str]) -> None:
+def signature_block(R: Report, left: list[str], right: list[str], bold_rows: frozenset = frozenset({1})) -> None:
     t = R.doc.add_table(rows=1, cols=2)
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     for cell, lines, al in ((t.rows[0].cells[0], left, WD_ALIGN_PARAGRAPH.LEFT),
@@ -821,7 +833,7 @@ def signature_block(R: Report, left: list[str], right: list[str]) -> None:
         para.paragraph_format.line_spacing = 1.15
         for i, ln in enumerate(lines):
             r = para.add_run(ln)
-            set_run_font(r, size=12, bold=(i == 1))
+            set_run_font(r, size=12, bold=(i in bold_rows) if lines is right else (i == 1))
             if i < len(lines) - 1:
                 r.add_break()
 
@@ -831,27 +843,29 @@ def front_matter(R: Report) -> None:
     # Certificate ---------------------------------------------------------------------------
     R.front_heading("Certificate")
     R.p(f"This is to certify that the project report entitled **“{TITLE}”**, submitted by "
-        "**[Student Name] ([Roll Number])**, **[Student Name] ([Roll Number])** and **[Student Name] "
-        "([Roll Number])** to **[Institute]** in partial fulfilment of the requirements for the award of the "
+        f"**{AUTHORS_TEXT}** to the **{SCHOOL}, {INSTITUTE}, {CITY_SHORT}** in partial fulfilment of the "
+        "requirements for the award of the "
         "degree of **Bachelor of Technology in Computer Science and Engineering**, is a bona fide record of the "
         "project work carried out by them under my supervision and guidance during the academic year "
-        "[Academic Year].")
+        f"{ACADEMIC_YEAR}.")
     R.p("The results embodied in this report have not been submitted, in part or in full, to any other "
         "university or institute for the award of any degree or diploma.")
     for _ in range(3):
         R.p("")
-    signature_block(R, ["", "[Guide Name]", "[Designation]", "[Department]", "[Institute]"],
-                    ["", "[Head of Department]", "Professor and Head", "[Department]", "[Institute]"])
+    signature_block(R, ["", GUIDE, "Project Guide", SCHOOL, f"{INSTITUTE}, {CITY_SHORT}"],
+                    ["", "Head of Department", SCHOOL, f"{INSTITUTE}, {CITY_SHORT}"])
     R.p("")
     R.p("")
-    signature_block(R, ["", "Internal Examiner", "Date: ____________"], ["", "External Examiner", "Place: [City]"])
+    signature_block(R, ["", "Internal Examiner", "Date: ____________"],
+                    ["", "External Examiner", f"Place: {CITY_SHORT}"])
 
     # Declaration ---------------------------------------------------------------------------
     R.front_heading("Declaration")
-    R.p(f"We hereby declare that the project report entitled **“{TITLE}”**, submitted to **[Institute]** "
+    R.p(f"We hereby declare that the project report entitled **“{TITLE}”**, submitted to the "
+        f"**{SCHOOL}, {INSTITUTE}, {CITY_SHORT}** "
         "in partial fulfilment of the requirements for the award of the degree of Bachelor of Technology in "
         "Computer Science and Engineering, is a record of original work carried out by us under the guidance of "
-        "**[Guide Name]**, [Designation], [Department].")
+        f"**{GUIDE}**, {SCHOOL}, {INSTITUTE}.")
     R.p("We further declare that the work reported here has not been submitted, either in part or in full, for "
         "the award of any other degree or diploma of this or any other institute or university. Wherever the "
         "work of other researchers has been used, it has been duly acknowledged and cited in the text and in the "
@@ -859,17 +873,17 @@ def front_matter(R: Report) -> None:
         "developed in this project and are reproducible with the scripts supplied with the source code.")
     for _ in range(3):
         R.p("")
-    signature_block(R, ["Place: [City]", "", "Date: ____________"],
-                    ["", "[Student Name] ([Roll Number])", "[Student Name] ([Roll Number])",
-                     "[Student Name] ([Roll Number])"])
+    signature_block(R, [f"Place: {CITY_SHORT}", "", "Date: ____________"],
+                    [""] + [f"{n} ({sap})" for n, sap in AUTHORS],
+                    bold_rows=frozenset(range(1, len(AUTHORS) + 1)))
 
     # Acknowledgement -----------------------------------------------------------------------
     R.front_heading("Acknowledgement")
-    R.p("We express our sincere gratitude to our project guide, **[Guide Name]**, [Designation], [Department], "
+    R.p(f"We express our sincere gratitude to our project guide, **{GUIDE}**, {SCHOOL}, {INSTITUTE}, "
         "for the constant guidance, valuable suggestions and encouragement provided throughout the course of this "
         "project. The guide's insistence on measuring every claim and reporting results honestly shaped the way "
         "this work was carried out and evaluated.")
-    R.p("We are thankful to **[Head of Department]**, Head of the [Department], for providing the facilities and "
+    R.p(f"We are thankful to the Head of the {SCHOOL}, {INSTITUTE}, for providing the facilities and "
         "a supportive academic environment, and to the project coordinators and all faculty members of the "
         "department for their feedback during the project reviews.")
     R.p("We also acknowledge the open-source community whose software made this project possible, in particular "
@@ -878,7 +892,7 @@ def front_matter(R: Report) -> None:
         "training and held-out evaluation.")
     R.p("Finally, we thank our families and friends for their patience and support.")
     R.p("")
-    R.p("[Student Name]  [Student Name]  [Student Name]", align=WD_ALIGN_PARAGRAPH.RIGHT)
+    R.p("   ".join(n for n, _ in AUTHORS), align=WD_ALIGN_PARAGRAPH.RIGHT)
 
     # Abstract ------------------------------------------------------------------------------
     R.front_heading("Abstract")
@@ -3008,7 +3022,7 @@ def build_docx() -> Report:
     props = R.doc.core_properties
     props.title = TITLE
     props.subject = "B.Tech project report"
-    props.author = "[Student Name]"
+    props.author = "; ".join(n for n, _ in AUTHORS)
     props.keywords = "GraphRAG, multi-hop QA, GNN, GAT, evidence graph"
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     R.doc.save(str(DOCX_PATH))
