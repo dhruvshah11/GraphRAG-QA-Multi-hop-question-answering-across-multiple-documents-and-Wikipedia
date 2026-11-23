@@ -176,6 +176,11 @@ FONT_SEMI = "Segoe UI Semibold"
 FONT_MATH = "Cambria Math"
 
 SLIDE_W, SLIDE_H = 13.333, 7.5
+GITHUB_URL = ("https://github.com/dhruvshah11/"
+              "GraphRAG-QA-Multi-hop-question-answering-across-multiple-documents-and-Wikipedia")
+TITLE_ROWS = [("Presented by", "Dhruv Shah  ·  500118979"), ("", "Manasvi Saxena  ·  500119549"),
+              ("Submitted to", "Dr. Sujoy Chatterjee"),
+              ("Department", "School of Computer Science (SoCS), UPES Dehradun"), ("Date", "November 2026")]
 MX = 0.6                    # horizontal margin
 CW = SLIDE_W - 2 * MX       # content width
 TOP = 1.55                  # content top on content slides
@@ -453,14 +458,15 @@ def s01_title():
          "Multi-Hop Question Answering Across Multiple Documents Using Evidence Graphs and Graph Neural Networks",
          size=24, color=ACCENT_SOFT, line_spacing=1.1)
     box(s, MX, 4.55, 1.2, 0.06, fill=ACCENT, radius=None, shape=MSO_SHAPE.RECTANGLE)
-    rows = [("Presented by", "[Student Name(s)]"), ("Guide", "[Guide]"),
-            ("Department", "[Department, Institute]"), ("Date", "[Month Year]")]
-    for i, (k, v) in enumerate(rows):
-        y = 4.85 + i * 0.5
-        text(s, MX, y, 1.9, 0.4, k, size=14, color=FAINT, anchor="m")
-        text(s, MX + 1.9, y, 5.5, 0.4, v, size=18, color=WHITE, anchor="m")
+    for i, (k, v) in enumerate(TITLE_ROWS):
+        y = 4.72 + i * 0.4
+        text(s, MX, y, 1.9, 0.36, k, size=13, color=FAINT, anchor="m")
+        text(s, MX + 1.9, y, 6.2, 0.36, v, size=16, color=WHITE, anchor="m")
+    gh = text(s, MX, 6.85, CW, 0.32, "GitHub:  " + GITHUB_URL.replace("https://", ""), size=11, color=ACCENT_SOFT)
+    gh.click_action.hyperlink.address = GITHUB_URL
     set_notes(s, "Title", f"""
-Good morning. Our project is GraphRAG-QA: multi-hop question answering across multiple documents using evidence
+Good morning. We are Dhruv Shah and Manasvi Saxena, and this project was done under Dr. Sujoy Chatterjee at the
+School of Computer Science, UPES Dehradun. Our project is GraphRAG-QA: multi-hop question answering across multiple documents using evidence
 graphs and graph neural networks. It is our B.Tech final-year project in Natural Language Processing.
 
 In one sentence: the system answers questions whose answer is spread over two or more documents. It retrieves
@@ -1903,8 +1909,9 @@ Thank you. We are happy to take questions, and we can show the live demo of the 
     text(s, 8.75, 3.45, 4.0, 0.7, "Questions?", size=30, color=ACCENT_SOFT, align="c")
     text(s, 9.0, 4.45, 3.5, 1.2, "Live demo: Nobel PDF → Geoffrey Hinton → Hinton profile → "
          "University of Edinburgh", size=14, color=SLATE_300, align="c")
-    text(s, MX, 6.85, CW, 0.35, "GraphRAG-QA  ·  B.Tech Final Year Project — Natural Language Processing",
-         size=11, color=SLATE_400)
+    gh = text(s, MX, 6.85, CW - 1.7, 0.35, "Code, data and results:  " + GITHUB_URL.replace("https://", ""),
+              size=11, color=SLATE_400)
+    gh.click_action.hyperlink.address = GITHUB_URL
     n = len(prs.slides)
     text(s, SLIDE_W - MX - 1.5, 6.85, 1.5, 0.35, f"{n} / {n}", size=11, color=SLATE_400, align="r")
 

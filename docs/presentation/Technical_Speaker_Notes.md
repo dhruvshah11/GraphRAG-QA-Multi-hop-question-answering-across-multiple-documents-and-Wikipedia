@@ -6,7 +6,7 @@ The short, time-limited version is `GraphRAG_QA_Final_Presentation.pptx` (notes 
 
 ## Slide 1 — Title
 
-Good morning. This is the technical version of our presentation on GraphRAG-QA: multi-hop question answering across multiple documents using evidence graphs and graph neural networks.
+Good morning. We are Dhruv Shah and Manasvi Saxena, and this project was done under Dr. Sujoy Chatterjee at the School of Computer Science, UPES Dehradun. This is the technical version of our presentation on GraphRAG-QA: multi-hop question answering across multiple documents using evidence graphs and graph neural networks.
 
 The short deck covers the story in about twenty minutes. This deck goes one level deeper: for every component we show the exact algorithm, the formula and the default parameters as they are implemented in backend/app, and every number is read at build time from the result files in the repository, so nothing on these slides is typed in by hand.
 

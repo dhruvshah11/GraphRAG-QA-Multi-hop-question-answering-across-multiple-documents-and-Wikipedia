@@ -6,9 +6,9 @@ Suggested timing: about 45–60 s per slide (≈ 20 minutes) plus questions.
 
 ## Slide 1 — Title
 
-*~210 words*
+*~234 words*
 
-Good morning. Our project is GraphRAG-QA: multi-hop question answering across multiple documents using evidence graphs and graph neural networks. It is our B.Tech final-year project in Natural Language Processing.
+Good morning. We are Dhruv Shah and Manasvi Saxena, and this project was done under Dr. Sujoy Chatterjee at the School of Computer Science, UPES Dehradun. Our project is GraphRAG-QA: multi-hop question answering across multiple documents using evidence graphs and graph neural networks. It is our B.Tech final-year project in Natural Language Processing.
 
 In one sentence: the system answers questions whose answer is spread over two or more documents. It retrieves passages with a hybrid dense-plus-keyword retriever, connects them in an evidence graph through shared entities, searches that graph for multi-hop evidence chains, reranks the evidence with either a graph heuristic or a trained graph attention network, and then produces an answer that is accepted only if it is grounded in cited sentences. If the evidence is not good enough it says so instead of guessing.
 

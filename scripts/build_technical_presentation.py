@@ -293,6 +293,11 @@ FONT_SEMI = "Segoe UI Semibold"
 FONT_MONO = "Consolas"
 
 SLIDE_W, SLIDE_H = 13.333, 7.5
+GITHUB_URL = ("https://github.com/dhruvshah11/"
+              "GraphRAG-QA-Multi-hop-question-answering-across-multiple-documents-and-Wikipedia")
+TITLE_ROWS = [("Presented by", "Dhruv Shah  ·  500118979"), ("", "Manasvi Saxena  ·  500119549"),
+              ("Submitted to", "Dr. Sujoy Chatterjee"),
+              ("Department", "School of Computer Science (SoCS), UPES Dehradun"), ("Date", "November 2026")]
 MX = 0.6
 CW = SLIDE_W - 2 * MX
 TOP = 1.55
@@ -786,14 +791,15 @@ def s_title():
          "Multi-Hop Question Answering Across Multiple Documents Using Evidence Graphs and Graph Neural Networks",
          size=24, color=ACCENT_SOFT, line_spacing=1.1)
     box(s, MX, 4.55, 1.2, 0.06, fill=ACCENT, radius=None, shape=MSO_SHAPE.RECTANGLE)
-    rows = [("Presented by", "[Student Name(s)]"), ("Guide", "[Guide]"),
-            ("Department", "[Department, Institute]"), ("Date", "[Month Year]")]
-    for i, (k, v) in enumerate(rows):
-        y = 4.85 + i * 0.5
-        text(s, MX, y, 1.9, 0.4, k, size=14, color=FAINT, anchor="m")
-        text(s, MX + 1.9, y, 5.5, 0.4, v, size=18, color=WHITE, anchor="m")
+    for i, (k, v) in enumerate(TITLE_ROWS):
+        y = 4.72 + i * 0.4
+        text(s, MX, y, 1.9, 0.36, k, size=13, color=FAINT, anchor="m")
+        text(s, MX + 1.9, y, 6.2, 0.36, v, size=16, color=WHITE, anchor="m")
+    gh = text(s, MX, 6.85, CW, 0.32, "GitHub:  " + GITHUB_URL.replace("https://", ""), size=11, color=ACCENT_SOFT)
+    gh.click_action.hyperlink.address = GITHUB_URL
     set_notes(s, "Title", f"""
-Good morning. This is the technical version of our presentation on GraphRAG-QA: multi-hop question answering across
+Good morning. We are Dhruv Shah and Manasvi Saxena, and this project was done under Dr. Sujoy Chatterjee at the
+School of Computer Science, UPES Dehradun. This is the technical version of our presentation on GraphRAG-QA: multi-hop question answering across
 multiple documents using evidence graphs and graph neural networks.
 
 The short deck covers the story in about twenty minutes. This deck goes one level deeper: for every component we show
