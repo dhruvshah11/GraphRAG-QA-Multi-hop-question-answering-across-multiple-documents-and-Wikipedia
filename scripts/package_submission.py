@@ -23,7 +23,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 TOP = "graphrag-qa"
 
-EXCLUDED_DIR_NAMES = {".venv", "node_modules", "__pycache__", ".pytest_cache", ".vite", ".mypy_cache", ".ruff_cache"}
+EXCLUDED_DIR_NAMES = {".git", ".venv", "node_modules", "__pycache__", ".pytest_cache", ".vite", ".mypy_cache", ".ruff_cache"}
 EXCLUDED_PREFIXES = ("frontend/dist/", "tools/", "models/embeddings/", "models/generation/",
                      "data/uploads/", "data/processed/", "data/indexes/", "data/graphs/")
 EXCLUDED_FILE_GLOBS = ("*.pyc", ".env", "*.sqlite3", "*.sqlite3-*", "~$*", "*.tsbuildinfo", "*.log")
