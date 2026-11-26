@@ -913,7 +913,7 @@ this repository is released under the [MIT License](LICENSE).
 
 | | |
 |---|---|
-| **Authors** | Dhruv Shah (500118979) · Manasvi Saxena (500119549) |
+| **Authors** | Dhruv Shah (500118979) |
 | **Supervisor** | Dr. Sujoy Chatterjee |
 | **Institution** | School of Computer Science (SoCS), UPES, Dehradun |
 | **Course** | B.Tech Computer Science and Engineering, Natural Language Processing project, 2026–27 |
@@ -927,7 +927,7 @@ If you use this work, please cite it as:
 ```bibtex
 @misc{shah2026graphragqa,
   title        = {GraphRAG-QA: Multi-Hop Question Answering Across Multiple Documents Using Evidence Graphs and Graph Neural Networks},
-  author       = {Shah, Dhruv and Saxena, Manasvi},
+  author       = {Shah, Dhruv},
   year         = {2026},
   howpublished = {B.Tech project, School of Computer Science, UPES Dehradun},
   note         = {Supervised by Dr. Sujoy Chatterjee},
